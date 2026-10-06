@@ -1,1269 +1,1338 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
 
-  <title>GastroLite AI | Research Blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Georgia, "Times New Roman", serif;
-      color: #243b43;
-      line-height: 1.8;
-      background: #e9f5f5;
-    }
+<title>GastroLite AI - Research Blog</title>
 
 
-    /* =========================================
-       READING PROGRESS
-    ========================================= */
+<style>
 
-    .progress-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 0%;
-      height: 5px;
-      background: linear-gradient(
-        90deg,
-        #55d6c2,
-        #62b8e8,
-        #9be7dc
-      );
-      z-index: 9999;
-    }
+/* =====================================================
+   BASIC
+===================================================== */
 
+* {
+    box-sizing: border-box;
+}
 
-    /* =========================================
-       TOP BRAND HEADER
-    ========================================= */
+html {
+    scroll-behavior: smooth;
+}
 
-    .masthead {
+body {
 
-      position: relative;
-      overflow: hidden;
+    margin: 0;
+    padding: 0;
 
-      padding: 55px 20px 48px;
+    font-family: Arial, Helvetica, sans-serif;
 
-      color: white;
+    color: #26383e;
 
-      background:
-        radial-gradient(
-          circle at 15% 20%,
-          rgba(91, 220, 201, 0.28),
-          transparent 28%
-        ),
+    min-height: 100vh;
 
-        radial-gradient(
-          circle at 85% 80%,
-          rgba(80, 164, 226, 0.30),
-          transparent 30%
-        ),
-
+    /* BACKGROUND IMAGE */
+    background-image:
         linear-gradient(
-          135deg,
-          #0b4f5a,
-          #126878 48%,
-          #164f72
-        );
+            rgba(16, 112, 120, 0.16),
+            rgba(16, 112, 120, 0.16)
+        ),
+        url("GastroLite Blog Background.png");
 
-      box-shadow:
-        0 8px 30px rgba(16, 78, 91, 0.25);
-    }
-
-
-    /* Decorative circles */
-
-    .masthead::before {
-      content: "";
-      position: absolute;
-
-      width: 220px;
-      height: 220px;
-
-      border-radius: 50%;
-
-      border: 1px solid rgba(255,255,255,0.12);
-
-      top: -100px;
-      left: -70px;
-    }
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
 
 
-    .masthead::after {
-      content: "";
-      position: absolute;
+/* =====================================================
+   MAIN BLOG CONTAINER
+===================================================== */
 
-      width: 280px;
-      height: 280px;
+.container {
 
-      border-radius: 50%;
+    width: 92%;
+    max-width: 1100px;
 
-      border: 1px solid rgba(255,255,255,0.10);
+    margin: 35px auto;
 
-      right: -110px;
-      bottom: -150px;
-    }
+    padding: 28px;
+
+    background:
+        rgba(255, 255, 255, 0.76);
+
+    border-radius: 18px;
+
+    border:
+        2px solid rgba(255, 255, 255, 0.90);
+
+    box-shadow:
+        0 12px 38px rgba(0, 0, 0, 0.25);
+
+}
 
 
-    .mast-inner {
-      position: relative;
-      z-index: 2;
+/* =====================================================
+   HEADER
+===================================================== */
 
-      max-width: 1100px;
-      margin: auto;
+.header {
 
-      text-align: center;
-    }
+    text-align: center;
+
+    padding: 15px 10px 32px;
+
+}
 
 
-    /* Centered logo */
+.header img {
 
-    .brand-logo {
+    width: 115px;
+    height: 115px;
 
-      width: 105px;
-      height: 105px;
+    object-fit: contain;
 
-      object-fit: contain;
+    border-radius: 50%;
 
-      display: block;
-      margin: 0 auto 18px;
+    background: white;
 
-      border-radius: 50%;
+    padding: 5px;
 
-      background: rgba(255,255,255,0.95);
+    box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.25);
 
-      padding: 5px;
-
-      box-shadow:
-        0 8px 25px rgba(0,0,0,0.20);
-
-      transition:
+    transition:
         transform 0.4s ease,
         box-shadow 0.4s ease;
-    }
+
+}
 
 
-    .brand-logo:hover {
+.header img:hover {
 
-      transform: scale(1.06) rotate(2deg);
+    transform:
+        scale(1.08) rotate(3deg);
 
-      box-shadow:
-        0 12px 35px rgba(0,0,0,0.28);
-    }
+    box-shadow:
+        0 10px 28px rgba(0, 0, 0, 0.30);
 
-
-    .brand {
-
-      font-family: Arial, Helvetica, sans-serif;
-
-      font-size: clamp(34px, 5vw, 50px);
-
-      font-weight: 700;
-
-      letter-spacing: 1px;
-
-      color: white;
-
-      margin-bottom: 5px;
-
-      text-shadow:
-        0 3px 15px rgba(0,0,0,0.18);
-    }
+}
 
 
-    .kicker {
+.header h1 {
 
-      font-family: Arial, Helvetica, sans-serif;
+    margin: 14px 0 5px;
 
-      font-size: 15px;
+    font-size: 3em;
 
-      letter-spacing: 1.5px;
+    letter-spacing: 1px;
 
-      color: #c8f4ee;
+    color: #075968;
 
-      margin-top: 4px;
-    }
+    text-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.08);
 
-
-    .author {
-
-      margin-top: 20px;
-
-      font-family: Arial, Helvetica, sans-serif;
-
-      font-size: 14px;
-
-      color: rgba(255,255,255,0.82);
-    }
+}
 
 
-    /* =========================================
-       CONTENT AREA
-       BACKGROUND IMAGE STARTS HERE
-    ========================================= */
+.header h2 {
 
-    .content-area {
+    margin: 8px 0;
 
-      position: relative;
+    font-size: 1.15em;
 
-      padding: 55px 20px 70px;
+    font-weight: normal;
 
-      background:
+    letter-spacing: 1px;
 
+    color: #18788a;
+
+}
+
+
+.author {
+
+    margin-top: 16px;
+
+    font-size: 0.98em;
+
+    color: #58757c;
+
+}
+
+
+/* =====================================================
+   MAIN TITLE
+===================================================== */
+
+.title-box {
+
+    margin: 10px 0 28px;
+
+    padding: 40px 35px;
+
+    text-align: center;
+
+    border-radius: 15px;
+
+    background:
         linear-gradient(
-          rgba(235, 248, 248, 0.80),
-          rgba(238, 248, 250, 0.88)
-        ),
-
-        url("GastroLite Blog Background.png")
-        center top / cover fixed;
-
-      overflow: hidden;
-    }
-
-
-    /* Decorative floating circles */
-
-    .content-area::before {
-
-      content: "";
-
-      position: absolute;
-
-      width: 350px;
-      height: 350px;
-
-      border-radius: 50%;
-
-      background:
-        radial-gradient(
-          circle,
-          rgba(51, 178, 177, 0.13),
-          transparent 70%
+            135deg,
+            #087f8c,
+            #139d9b,
+            #2879a3
         );
 
-      top: 100px;
-      left: -170px;
-    }
+    color: white;
+
+    box-shadow:
+        0 8px 22px rgba(0, 0, 0, 0.25);
+
+    animation:
+        fadeIn 0.9s ease;
+
+}
 
 
-    .content-area::after {
+.title-box .label {
 
-      content: "";
+    display: inline-block;
 
-      position: absolute;
+    padding: 8px 18px;
 
-      width: 400px;
-      height: 400px;
+    margin-bottom: 18px;
 
-      border-radius: 50%;
+    border-radius: 20px;
 
-      background:
-        radial-gradient(
-          circle,
-          rgba(80, 170, 220, 0.12),
-          transparent 70%
-        );
+    background:
+        rgba(255, 255, 255, 0.18);
 
-      right: -190px;
-      bottom: 400px;
-    }
+    border:
+        1px solid rgba(255, 255, 255, 0.45);
 
+    font-size: 0.82em;
 
-    /* =========================================
-       ARTICLE
-    ========================================= */
+    letter-spacing: 2px;
 
-    .paper {
+    text-transform: uppercase;
 
-      position: relative;
-      z-index: 2;
-
-      max-width: 1080px;
-
-      margin: auto;
-
-      background: rgba(255,255,255,0.94);
-
-      border-radius: 24px;
-
-      border: 1px solid rgba(65,140,150,0.18);
-
-      box-shadow:
-        0 20px 70px rgba(24,86,96,0.16);
-
-      overflow: hidden;
-    }
+}
 
 
-    .article-inner {
+.title-box h1 {
 
-      max-width: 920px;
+    margin: 0;
 
-      margin: auto;
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
 
-      padding: 65px 65px 75px;
-    }
+    font-size:
+        clamp(2.1em, 4vw, 3.25em);
 
+    line-height: 1.18;
 
-    /* =========================================
-       HERO / MAIN TITLE
-    ========================================= */
+    color: white;
 
-    .hero {
-
-      position: relative;
-
-      padding: 20px 0 48px;
-
-      margin-bottom: 55px;
-
-      text-align: center;
-
-      border-bottom:
-        1px solid rgba(55,120,130,0.16);
-    }
+}
 
 
-    .eyebrow {
+/* =====================================================
+   GENERAL SECTION BOX
+===================================================== */
 
-      display: inline-block;
+.section {
 
-      padding: 7px 18px;
+    margin: 25px 0;
 
-      border-radius: 30px;
+    padding: 28px;
 
-      font-family: Arial, Helvetica, sans-serif;
+    border-radius: 13px;
 
-      font-size: 11px;
+    border:
+        1px solid rgba(0, 0, 0, 0.08);
 
-      text-transform: uppercase;
+    box-shadow:
+        0 5px 16px rgba(0, 0, 0, 0.13);
 
-      letter-spacing: 2px;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
 
-      color: #16747b;
+    animation:
+        fadeUp 0.7s ease;
 
-      background:
+}
+
+
+.section:hover {
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.19);
+
+}
+
+
+/* =====================================================
+   DIFFERENT SECTION COLORS
+===================================================== */
+
+.introduction {
+
+    background:
         linear-gradient(
-          135deg,
-          #d9f7f2,
-          #e1f2fa
+            135deg,
+            #e1f8f4,
+            #d4eef6
         );
 
-      border: 1px solid #b9e4e1;
+    border:
+        2px solid #62b8c2;
 
-      margin-bottom: 22px;
-    }
-
-
-    .hero h1 {
-
-      font-family: Georgia, "Times New Roman", serif;
-
-      font-size: clamp(34px, 5vw, 56px);
-
-      line-height: 1.17;
-
-      font-weight: 700;
-
-      color: #173f4b;
-
-      max-width: 850px;
-
-      margin: auto;
-    }
+}
 
 
-    /* Accent line under title */
+.lightweight {
 
-    .hero::after {
-
-      content: "";
-
-      display: block;
-
-      width: 85px;
-
-      height: 5px;
-
-      border-radius: 10px;
-
-      margin: 30px auto 0;
-
-      background:
+    background:
         linear-gradient(
-          90deg,
-          #37bca9,
-          #55a9d9
+            135deg,
+            #e3f0ff,
+            #d8e9fa
         );
+
+    border:
+        2px solid #6d9dcc;
+
+}
+
+
+.dataset {
+
+    background:
+        linear-gradient(
+            135deg,
+            #e4f7ea,
+            #d5efdf
+        );
+
+    border:
+        2px solid #6ab18a;
+
+}
+
+
+.methodology {
+
+    background:
+        linear-gradient(
+            135deg,
+            #eee8fb,
+            #e2e7f8
+        );
+
+    border:
+        2px solid #9689c5;
+
+}
+
+
+.evaluation {
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff4df,
+            #f8e9d1
+        );
+
+    border:
+        2px solid #d0a86b;
+
+}
+
+
+.resource {
+
+    background:
+        linear-gradient(
+            135deg,
+            #def5f5,
+            #d6eaf3
+        );
+
+    border:
+        2px solid #61aeb5;
+
+}
+
+
+.prototype {
+
+    background:
+        linear-gradient(
+            135deg,
+            #f1e9f7,
+            #e8e2f7
+        );
+
+    border:
+        2px solid #a087b5;
+
+}
+
+
+.results {
+
+    background:
+        linear-gradient(
+            135deg,
+            #e1f7ed,
+            #d9eff4
+        );
+
+    border:
+        2px solid #65af94;
+
+}
+
+
+.future {
+
+    background:
+        linear-gradient(
+            135deg,
+            #e5edf8,
+            #dce7f4
+        );
+
+    border:
+        2px solid #7699bf;
+
+}
+
+
+.bottom-line {
+
+    background:
+        linear-gradient(
+            135deg,
+            #deeff7,
+            #d7e9f3
+        );
+
+    border:
+        2px solid #619bb3;
+
+}
+
+/* =====================================================
+   SECTION HEADINGS
+===================================================== */
+
+.section h2 {
+
+    margin-top: 0;
+
+    margin-bottom: 17px;
+
+    padding-bottom: 9px;
+
+    font-size: 1.9em;
+
+    color: #087381;
+
+    border-bottom:
+        3px solid rgba(8, 115, 129, 0.18);
+
+}
+
+
+.section p {
+
+    font-size: 1.05em;
+
+    line-height: 1.8;
+
+    margin-bottom: 15px;
+
+}
+
+
+.section ul {
+
+    padding-left: 25px;
+
+}
+
+
+.section li {
+
+    font-size: 1.02em;
+
+    line-height: 1.7;
+
+    margin-bottom: 10px;
+
+}
+
+
+.section strong {
+
+    color: #086a78;
+
+}
+
+
+/* =====================================================
+   HIGHLIGHT BOX
+===================================================== */
+
+.highlight {
+
+    margin-top: 22px;
+
+    padding: 20px;
+
+    border-radius: 9px;
+
+    background:
+        rgba(255, 255, 255, 0.78);
+
+    border-left:
+        5px solid #159d9b;
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.08);
+
+    font-style: italic;
+
+    line-height: 1.7;
+
+}
+
+
+/* =====================================================
+   WORKING DIAGRAM
+===================================================== */
+
+.block-diagram {
+
+    margin-top: 25px;
+
+    padding: 18px;
+
+    background:
+        rgba(255, 255, 255, 0.72);
+
+    border-radius: 10px;
+
+    text-align: center;
+
+}
+
+
+.block-diagram img {
+
+    display: block;
+
+    width: 100%;
+
+    max-width: 900px;
+
+    margin: auto;
+
+    border-radius: 9px;
+
+    border:
+        3px solid #159c9c;
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.20);
+
+}
+
+
+.block-diagram p {
+
+    margin:
+        12px 0 0;
+
+    font-size: 0.88em;
+
+    color: #60777d;
+
+}
+
+
+/* =====================================================
+   MODEL TABLE
+===================================================== */
+
+.table-wrapper {
+
+    overflow-x: auto;
+
+    margin-top: 22px;
+
+}
+
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    background: white;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.12);
+
+}
+
+
+th {
+
+    padding: 14px 9px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #087985,
+            #216a99
+        );
+
+    font-size: 0.92em;
+
+}
+
+
+td {
+
+    padding: 13px 9px;
+
+    text-align: center;
+
+    border-bottom:
+        1px solid #dbe4e7;
+
+    font-size: 0.90em;
+
+}
+
+
+tr:hover td {
+
+    background:
+        #e9f8f7;
+
+}
+
+
+/* =====================================================
+   SELECTED MODEL
+===================================================== */
+
+.selected-model {
+
+    margin-top: 22px;
+
+    padding: 23px;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #c9f4ea,
+            #d4ebfa
+        );
+
+    border:
+        2px solid #72c8bd;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.10);
+
+}
+
+
+.selected-model h3 {
+
+    margin-top: 0;
+
+    color: #086b76;
+
+    font-size: 1.35em;
+
+}
+
+
+/* =====================================================
+   WEB APP SLIDESHOW
+===================================================== */
+
+.slideshow-container {
+
+    position: relative;
+
+    width: 94%;
+
+    max-width: 950px;
+
+    margin: 38px auto;
+
+    overflow: hidden;
+
+    border-radius: 13px;
+
+    background:
+        #103b48;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.30);
+
+}
+
+
+/* Slideshow heading */
+
+.slideshow-container h2 {
+
+    margin: 0;
+
+    padding: 16px;
+
+    text-align: center;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #087985,
+            #206e9c
+        );
+
+    font-size: 1.7em;
+
+}
+
+
+/* Slides */
+
+.slides {
+
+    display: none;
+
+    position: relative;
+
+    width: 100%;
+
+}
+
+
+.slides img {
+
+    display: block;
+
+    width: 100%;
+
+    max-height: 600px;
+
+    object-fit: contain;
+
+    background:
+        #edf4f5;
+
+}
+
+
+/* Caption */
+
+.caption {
+
+    position: absolute;
+
+    left: 0;
+
+    bottom: 0;
+
+    width: 100%;
+
+    padding: 13px;
+
+    text-align: center;
+
+    color: white;
+
+    background:
+        rgba(0, 0, 0, 0.65);
+
+    font-size: 1em;
+
+}
+
+
+/* Previous / Next */
+
+.prev,
+.next {
+
+    position: absolute;
+
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    padding: 15px;
+
+    color: white;
+
+    background:
+        rgba(0, 0, 0, 0.48);
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    user-select: none;
+
+    transition:
+        background 0.3s ease;
+
+}
+
+
+.prev {
+
+    left: 0;
+
+    border-radius:
+        0 6px 6px 0;
+
+}
+
+
+.next {
+
+    right: 0;
+
+    border-radius:
+        6px 0 0 6px;
+
+}
+
+
+.prev:hover,
+.next:hover {
+
+    background:
+        rgba(0, 0, 0, 0.88);
+
+}
+
+
+/* Dots */
+
+.dots {
+
+    padding: 12px;
+
+    text-align: center;
+
+    background:
+        #103b48;
+
+}
+
+
+.dot {
+
+    display: inline-block;
+
+    width: 10px;
+
+    height: 10px;
+
+    margin: 0 4px;
+
+    border-radius: 50%;
+
+    background:
+        #9dc5cc;
+
+    cursor: pointer;
+
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease;
+
+}
+
+
+.dot.active {
+
+    background:
+        #47d2c0;
+
+    transform:
+        scale(1.3);
+
+}
+
+
+/* =====================================================
+   RESULT NOTE
+===================================================== */
+
+.result-note {
+
+    margin-top: 20px;
+
+    padding: 18px;
+
+    border-radius: 8px;
+
+    background:
+        rgba(255, 255, 255, 0.78);
+
+    border-left:
+        5px solid #318ca0;
+
+    line-height: 1.7;
+
+}
+
+
+/* =====================================================
+   HEALTH QUOTE
+===================================================== */
+
+.health-quote {
+
+    margin: 40px 0;
+
+    padding: 60px 25px;
+
+    text-align: center;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #007783,
+            #10a29c,
+            #2676a2
+        );
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.30);
+
+}
+
+
+.health-quote p {
+
+    margin: 0;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(2em, 4vw, 3.2em);
+
+    line-height: 1.35;
+
+    font-weight: bold;
+
+    color: white;
+
+    text-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.25);
+
+}
+
+
+/* =====================================================
+   CONTACT DETAILS
+===================================================== */
+
+.contact-details {
+
+    margin-top: 30px;
+
+    padding: 28px;
+
+    border-radius: 12px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #075d6b,
+            #147e8b,
+            #1d638e
+        );
+
+    box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.25);
+
+}
+
+
+.contact-details h2 {
+
+    margin-top: 0;
+
+    color: #91f0e4;
+
+    font-size: 1.8em;
+
+}
+
+
+.contact-details p {
+
+    font-size: 1.05em;
+
+    line-height: 1.7;
+
+}
+
+
+.contact-details a {
+
+    color: #a9f3e9;
+
+    text-decoration: none;
+
+    font-weight: 500;
+
+}
+
+
+.contact-details a:hover {
+
+    text-decoration: underline;
+
+}
+
+
+/* =====================================================
+   QUERY FORM
+===================================================== */
+
+.query-form {
+
+    margin-top: 25px;
+
+    padding: 28px;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e7f6f7,
+            #e0effa
+        );
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.15);
+
+}
+
+
+.query-form h3 {
+
+    margin-top: 0;
+
+    color: #096777;
+
+    font-size: 1.55em;
+
+}
+
+
+.query-form label {
+
+    display: block;
+
+    margin-top: 13px;
+
+    font-weight: bold;
+
+    color: #36545a;
+
+}
+
+
+.query-form input,
+.query-form textarea {
+
+    width: 100%;
+
+    padding: 12px;
+
+    margin-top: 6px;
+
+    border:
+        1px solid #b6cfd4;
+
+    border-radius: 7px;
+
+    background: white;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 1em;
+
+}
+
+
+.query-form textarea {
+
+    min-height: 120px;
+
+    resize: vertical;
+
+}
+
+
+.query-form button {
+
+    margin-top: 16px;
+
+    padding: 12px 25px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #078391,
+            #216da0
+        );
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+
+}
+
+
+.query-form button:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 5px 13px rgba(0, 0, 0, 0.20);
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer {
+
+    margin-top: 35px;
+
+    padding: 16px;
+
+    text-align: center;
+
+    color: white;
+
+    background:
+        rgba(6, 48, 56, 0.92);
+
+    border-radius: 8px;
+
+}
+
+
+.footer p {
+
+    margin: 0;
+
+    font-size: 0.9em;
+
+}
+
+
+/* =====================================================
+   ANIMATIONS
+===================================================== */
+
+@keyframes fadeIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(0.97);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1);
+
+    }
+
+}
+
+
+@keyframes fadeUp {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+
+    .container {
+
+        width: 94%;
+
+        padding: 15px;
+
+        margin: 15px auto;
+
     }
 
 
-    /* =========================================
-       SECTIONS
-    ========================================= */
+    .header h1 {
+
+        font-size: 2.1em;
+
+    }
+
+
+    .header h2 {
+
+        font-size: 0.95em;
+
+    }
+
+
+    .title-box {
+
+        padding: 28px 18px;
+
+    }
+
+
+    .title-box h1 {
+
+        font-size: 2em;
+
+    }
+
 
     .section {
 
-      position: relative;
+        padding: 21px;
 
-      margin-bottom: 60px;
-
-      padding: 30px 30px 32px;
-
-      border-radius: 18px;
-
-      background:
-        linear-gradient(
-          135deg,
-          rgba(246,252,252,0.95),
-          rgba(255,255,255,0.88)
-        );
-
-      border: 1px solid rgba(80,145,155,0.10);
-
-      box-shadow:
-        0 7px 25px rgba(40,90,100,0.05);
-
-      transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
-    }
-
-
-    .section:hover {
-
-      transform: translateY(-3px);
-
-      box-shadow:
-        0 12px 32px rgba(40,100,110,0.10);
     }
 
 
     .section h2 {
 
-      position: relative;
+        font-size: 1.55em;
 
-      font-family: Arial, Helvetica, sans-serif;
-
-      font-size: 26px;
-
-      line-height: 1.3;
-
-      color: #176875;
-
-      margin-bottom: 20px;
-
-      padding-left: 18px;
-    }
-
-
-    .section h2::before {
-
-      content: "";
-
-      position: absolute;
-
-      left: 0;
-
-      top: 3px;
-
-      width: 5px;
-
-      height: 28px;
-
-      border-radius: 5px;
-
-      background:
-        linear-gradient(
-          #36bba9,
-          #4f9fd1
-        );
     }
 
 
     .section p {
 
-      font-size: 17px;
-
-      margin-bottom: 17px;
-
-      color: #40565e;
-    }
-
-
-    .section ul {
-
-      margin: 18px 0 22px 25px;
-    }
-
-
-    .section li {
-
-      margin-bottom: 9px;
-
-      font-size: 16px;
-
-      color: #425960;
-    }
-
-
-    /* =========================================
-       HIGHLIGHT
-    ========================================= */
-
-    .highlight {
-
-      margin: 30px 0;
-
-      padding: 25px 28px;
-
-      border-radius: 14px;
-
-      border-left: 5px solid #35b8a5;
-
-      background:
-        linear-gradient(
-          135deg,
-          #e0f8f4,
-          #e5f3fa
-        );
-
-      color: #275a64;
-
-      font-size: 18px;
-
-      font-style: italic;
-
-      box-shadow:
-        0 5px 20px rgba(42,130,135,0.08);
-    }
-
-
-    /* =========================================
-       FIGURES
-    ========================================= */
-
-    figure {
-
-      margin: 35px auto;
-
-      text-align: center;
-    }
-
-
-    figure img {
-
-      max-width: 100%;
-
-      height: auto;
-
-      display: block;
-
-      margin: auto;
-
-      border-radius: 14px;
-
-      border: 1px solid rgba(70,140,150,0.18);
-
-      box-shadow:
-        0 10px 30px rgba(30,80,90,0.14);
-
-      transition:
-        transform 0.35s ease,
-        box-shadow 0.35s ease;
-    }
-
-
-    figure img:hover {
-
-      transform: translateY(-6px) scale(1.01);
-
-      box-shadow:
-        0 18px 38px rgba(30,90,100,0.20);
-    }
-
-
-    figcaption {
-
-      margin-top: 12px;
-
-      font-family: Arial, Helvetica, sans-serif;
-
-      font-size: 12px;
-
-      color: #71878e;
-    }
-
-
-    /* =========================================
-       TABLE
-    ========================================= */
-
-    .table-wrapper {
-
-      overflow-x: auto;
-
-      margin: 30px 0;
-    }
-
-
-    table {
-
-      width: 100%;
-
-      border-collapse: separate;
-
-      border-spacing: 0;
-
-      overflow: hidden;
-
-      border-radius: 12px;
-
-      font-family: Arial, Helvetica, sans-serif;
-
-      font-size: 13px;
-
-      background: white;
-
-      box-shadow:
-        0 7px 25px rgba(30,90,100,0.08);
-    }
-
-
-    th {
-
-      padding: 14px 10px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #176875,
-          #24859a
-        );
-
-      color: white;
-
-      font-weight: 600;
-    }
-
-
-    td {
-
-      padding: 13px 10px;
-
-      border-bottom: 1px solid #dce9eb;
-
-      text-align: center;
-
-      white-space: nowrap;
-
-      color: #40555d;
-    }
-
-
-    tr:last-child td {
-
-      border-bottom: none;
-    }
-
-
-    tr:hover td {
-
-      background: #eef9f8;
-    }
-
-
-    /* =========================================
-       SELECTED MODEL
-    ========================================= */
-
-    .selected-model {
-
-      margin: 30px 0;
-
-      padding: 28px;
-
-      border-radius: 16px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #dff8f3,
-          #e5f3fb
-        );
-
-      border: 1px solid #b7e2df;
-
-      box-shadow:
-        0 8px 25px rgba(40,130,135,0.10);
-    }
-
-
-    .selected-model strong {
-
-      display: block;
-
-      font-family: Arial, Helvetica, sans-serif;
-
-      font-size: 18px;
-
-      color: #176875;
-
-      margin-bottom: 8px;
-    }
-
-
-    /* =========================================
-       SCREENSHOT GALLERY
-    ========================================= */
-
-    .gallery {
-
-      display: grid;
-
-      grid-template-columns: repeat(2, 1fr);
-
-      gap: 25px;
-
-      margin-top: 30px;
-    }
-
-
-    .gallery figure {
-
-      padding: 10px;
-
-      margin: 0;
-
-      border-radius: 16px;
-
-      background: white;
-
-      border: 1px solid rgba(70,140,150,0.13);
-
-      box-shadow:
-        0 7px 25px rgba(40,90,100,0.08);
-
-      transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
-    }
-
-
-    .gallery figure:hover {
-
-      transform: translateY(-6px);
-
-      box-shadow:
-        0 14px 32px rgba(30,90,100,0.15);
-    }
-
-
-    .gallery img {
-
-      width: 100%;
-
-      height: 260px;
-
-      object-fit: cover;
-
-      border-radius: 10px;
-
-      box-shadow: none;
-    }
-
-
-    .gallery img:hover {
-
-      transform: none;
-
-      box-shadow: none;
-    }
-
-
-    /* =========================================
-       KEYWORDS
-    ========================================= */
-
-    .tags {
-
-      margin-top: 55px;
-
-      padding-top: 30px;
-
-      border-top:
-        1px solid rgba(70,120,130,0.15);
-
-      text-align: center;
-
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-
-    .tag {
-
-      display: inline-block;
-
-      margin: 6px 4px;
-
-      padding: 8px 17px;
-
-      border-radius: 30px;
-
-      font-size: 12px;
-
-      font-weight: 500;
-
-      color: #176875;
-
-      background:
-        linear-gradient(
-          135deg,
-          #d9f5f0,
-          #e3f2fa
-        );
-
-      border: 1px solid #b9dfdf;
-
-      box-shadow:
-        0 3px 10px rgba(30,100,110,0.06);
-
-      transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
-    }
-
-
-    .tag:hover {
-
-      transform: translateY(-3px);
-
-      box-shadow:
-        0 7px 15px rgba(30,110,120,0.13);
-    }
-
-
-    /* =========================================
-       LARGE HEALTH QUOTE
-    ========================================= */
-
-    .health-quote {
-
-      position: relative;
-
-      margin: 65px -10px 65px;
-
-      padding: 55px 30px;
-
-      text-align: center;
-
-      border-radius: 22px;
-
-      overflow: hidden;
-
-      background:
-        radial-gradient(
-          circle at 15% 20%,
-          rgba(108,231,212,0.25),
-          transparent 30%
-        ),
-
-        radial-gradient(
-          circle at 85% 80%,
-          rgba(91,177,232,0.25),
-          transparent 30%
-        ),
-
-        linear-gradient(
-          135deg,
-          #0e6370,
-          #147e86,
-          #185d7d
-        );
-
-      box-shadow:
-        0 15px 40px rgba(15,90,100,0.20);
-    }
-
-
-    .health-quote::before {
-
-      content: "“";
-
-      position: absolute;
-
-      top: -25px;
-      left: 30px;
-
-      font-family: Georgia, serif;
-
-      font-size: 150px;
-
-      color: rgba(255,255,255,0.10);
-    }
-
-
-    .health-quote p {
-
-      position: relative;
-
-      z-index: 2;
-
-      max-width: 780px;
-
-      margin: auto;
-
-      font-family: Georgia, serif;
-
-      font-size: clamp(25px, 4vw, 43px);
-
-      line-height: 1.35;
-
-      font-weight: 600;
-
-      color: white;
-
-      text-shadow:
-        0 3px 15px rgba(0,0,0,0.15);
-    }
-
-
-    /* =========================================
-       QUERY / CONTACT
-    ========================================= */
-
-    .contact-section {
-
-      position: relative;
-
-      margin-top: 20px;
-
-      padding: 45px 30px;
-
-      text-align: center;
-
-      border-radius: 20px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #e2f8f4,
-          #e6f3fa
-        );
-
-      border:
-        1px solid #b9dfdf;
-
-      box-shadow:
-        0 10px 30px rgba(30,100,110,0.09);
-    }
-
-
-    .contact-section h2 {
-
-      font-family: Arial, Helvetica, sans-serif;
-
-      font-size: 28px;
-
-      color: #176875;
-
-      margin-bottom: 8px;
-    }
-
-
-    .contact-intro {
-
-      max-width: 620px;
-
-      margin: 0 auto 28px;
-
-      color: #526970;
-
-      font-size: 16px;
-    }
-
-
-    .contact-details {
-
-      display: flex;
-
-      justify-content: center;
-
-      align-items: center;
-
-      gap: 20px;
-
-      flex-wrap: wrap;
-    }
-
-
-    .contact-item {
-
-      display: inline-flex;
-
-      align-items: center;
-
-      gap: 10px;
-
-      padding: 12px 20px;
-
-      border-radius: 30px;
-
-      background: white;
-
-      color: #356875;
-
-      text-decoration: none;
-
-      font-family: Arial, Helvetica, sans-serif;
-
-      font-size: 14px;
-
-      border: 1px solid #c7e1e2;
-
-      box-shadow:
-        0 4px 15px rgba(30,100,110,0.07);
-
-      transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        color 0.25s ease;
-    }
-
-
-    .contact-item:hover {
-
-      transform: translateY(-4px);
-
-      color: #12606c;
-
-      box-shadow:
-        0 9px 22px rgba(30,100,110,0.14);
-    }
-
-
-    .contact-icon {
-
-      display: flex;
-
-      color: #21988f;
-    }
-
-
-    /* =========================================
-       FOOTER
-    ========================================= */
-
-    .site-footer {
-
-      padding: 25px 20px;
-
-      text-align: center;
-
-      background:
-        linear-gradient(
-          135deg,
-          #0c505b,
-          #125f70
-        );
-
-      color: rgba(255,255,255,0.78);
-
-      font-family: Arial, Helvetica, sans-serif;
-
-      font-size: 13px;
-
-      letter-spacing: 0.5px;
-    }
-
-
-    .site-footer p {
-
-      margin: 0;
-    }
-
-
-    /* =========================================
-       ANIMATION
-    ========================================= */
-
-    @keyframes fadeUp {
-
-      from {
-
-        opacity: 0;
-
-        transform:
-          translateY(25px);
-      }
-
-      to {
-
-        opacity: 1;
-
-        transform:
-          translateY(0);
-      }
+        font-size: 0.98em;
 
     }
 
 
-    .hero {
-
-      animation:
-        fadeUp 0.8s ease both;
-    }
-
-
-    .section {
-
-      animation:
-        fadeUp 0.8s ease both;
-    }
-
-
-    /* =========================================
-       MOBILE
-    ========================================= */
-
-    @media (max-width: 768px) {
-
-      .masthead {
-
-        padding:
-          40px 18px 38px;
-      }
-
-
-      .brand-logo {
-
-        width: 85px;
-        height: 85px;
-      }
-
-
-      .article-inner {
-
-        padding:
-          40px 22px 50px;
-      }
-
-
-      .content-area {
-
-        padding:
-          30px 12px 50px;
-      }
-
-
-      .paper {
-
-        border-radius: 18px;
-      }
-
-
-      .hero h1 {
-
-        font-size: 34px;
-      }
-
-
-      .section {
-
-        padding: 25px 20px;
-      }
-
-
-      .section p {
-
-        font-size: 16px;
-      }
-
-
-      .gallery {
-
-        grid-template-columns: 1fr;
-      }
-
-
-      .gallery img {
-
-        height: auto;
-      }
-
-
-      .health-quote {
-
-        margin-left: 0;
-        margin-right: 0;
-      }
-
-    }
-
-
-    @media (max-width: 480px) {
-
-      .brand {
-
-        font-size: 34px;
-      }
-
-
-      .kicker {
-
-        font-size: 12px;
-      }
-
-
-      .author {
-
-        font-size: 12px;
-      }
-
-
-      .hero h1 {
-
-        font-size: 29px;
-      }
-
-
-      .section h2 {
-
-        font-size: 22px;
-      }
-
-
-      .health-quote p {
-
-        font-size: 27px;
-      }
-
-
-      .contact-item {
+    .slideshow-container {
 
         width: 100%;
 
-        justify-content: center;
-      }
+    }
+
+
+    .prev,
+    .next {
+
+        padding: 10px;
+
+        font-size: 18px;
 
     }
 
-  </style>
+}
+
+</style>
 
 </head>
 
@@ -1271,841 +1340,1031 @@
 <body>
 
 
-  <!-- =====================================
-       READING PROGRESS
-  ====================================== -->
-
-  <div
-    class="progress-bar"
-    id="progressBar">
-  </div>
+<div class="container">
 
 
-  <!-- =====================================
-       GASTROLITE HEADER
-  ====================================== -->
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
-  <header class="masthead">
+<div class="header">
 
-    <div class="mast-inner">
-
-      <img
-        class="brand-logo"
+    <img
         src="logo.png"
         alt="GastroLite AI Logo"
-      >
+    >
 
-      <h1 class="brand">
+    <h1>
         GastroLite AI
-      </h1>
+    </h1>
 
-      <div class="kicker">
+    <h2>
         Efficient Detection ✦ Lightweight Deployment
-      </div>
+    </h2>
 
-      <div class="author">
+    <div class="author">
         — Written by Mahvish Ishaq
-      </div>
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MAIN TITLE
+===================================================== -->
+
+<div class="title-box">
+
+    <div class="label">
+        Research Project
+    </div>
+
+    <h1>
+        A Deployment-Oriented Resource-Aware Lightweight
+        Deep Learning Framework for Gastric Cancer
+        Histopathological Classification
+    </h1>
+
+</div>
+
+
+<!-- =====================================================
+     INTRODUCTION
+===================================================== -->
+
+<div class="section introduction">
+
+    <h2>
+        Introduction
+    </h2>
+
+    <p>
+        Gastric cancer is a major health concern, and
+        histopathological examination plays an important role
+        in identifying abnormal tissue. However, examining
+        large numbers of histopathological images can be
+        time-consuming and requires considerable expertise.
+    </p>
+
+    <p>
+        Deep learning has shown strong potential for automated
+        histopathological image classification. However,
+        highly accurate deep learning models can also require
+        considerable computational resources, making them less
+        suitable for lightweight or deployment-oriented
+        applications.
+    </p>
+
+    <p>
+        GastroLite AI explores a resource-aware approach by
+        evaluating lightweight deep learning architectures for
+        gastric cancer histopathological classification and
+        selecting a model that provides a practical balance
+        between classification performance and computational
+        efficiency.
+    </p>
+
+</div>
+
+
+<!-- =====================================================
+     WHY LIGHTWEIGHT
+===================================================== -->
+
+<div class="section lightweight">
+
+    <h2>
+        Why a Lightweight Model?
+    </h2>
+
+    <p>
+        A model is not evaluated only by its classification
+        accuracy. Parameters, model size, computational cost,
+        and inference time are also important when the model
+        is intended for practical deployment.
+    </p>
+
+    <div class="highlight">
+
+        The objective of GastroLite AI is to identify a model
+        that provides a strong balance between accuracy and
+        resource efficiency, rather than selecting a model
+        based only on the highest accuracy.
 
     </div>
 
-  </header>
+</div>
 
 
-  <!-- =====================================
-       CONTENT AREA
-       BACKGROUND STARTS HERE
-  ====================================== -->
+<!-- =====================================================
+     DATASET
+===================================================== -->
 
-  <div class="content-area">
+<div class="section dataset">
 
-
-    <main class="paper">
-
-
-      <article class="article-inner">
-
-
-        <!-- =================================
-             MAIN TITLE
-        ================================== -->
-
-        <section class="hero">
-
-          <span class="eyebrow">
-            Research Project
-          </span>
-
-          <h1>
-            A Deployment-Oriented Resource-Aware
-            Lightweight Deep Learning Framework
-            for Gastric Cancer Histopathological
-            Classification
-          </h1>
-
-        </section>
-
-
-        <!-- =================================
-             INTRODUCTION
-        ================================== -->
-
-        <section class="section">
-
-          <h2>
-            Introduction
-          </h2>
-
-          <p>
-            Gastric cancer is a major health concern, and histopathological
-            examination plays an important role in identifying abnormal tissue.
-            However, examining large numbers of histopathological images can be
-            time-consuming and requires considerable expertise.
-          </p>
-
-          <p>
-            Deep learning has shown strong potential for automated
-            histopathological image classification. However, highly accurate
-            deep learning models can also require considerable computational
-            resources, making them less suitable for lightweight or
-            deployment-oriented applications.
-          </p>
-
-          <p>
-            GastroLite AI explores a resource-aware approach by evaluating
-            lightweight deep learning architectures for gastric cancer
-            histopathological classification and selecting a model that provides
-            a practical balance between classification performance and
-            computational efficiency.
-          </p>
-
-        </section>
-
-
-        <!-- =================================
-             WHY LIGHTWEIGHT
-        ================================== -->
-
-        <section class="section">
-
-          <h2>
-            Why a Lightweight Model?
-          </h2>
-
-          <p>
-            A model is not evaluated only by its classification accuracy.
-            Parameters, model size, computational cost, and inference time are
-            also important when the model is intended for practical deployment.
-          </p>
-
-          <div class="highlight">
-
-            The objective of GastroLite AI is to identify a model that provides
-            a strong balance between accuracy and resource efficiency, rather
-            than selecting a model based only on the highest accuracy.
-
-          </div>
-
-        </section>
-
-
-        <!-- =================================
-             DATASET
-        ================================== -->
-
-        <section class="section">
-
-          <h2>
-            Dataset &amp; Preprocessing
-          </h2>
-
-          <p>
-            The GasHisSDB dataset was used for the experimental evaluation.
-            The dataset contains 245,196 gastric histopathological images
-            belonging to normal and abnormal categories.
-          </p>
-
-          <p>
-            The dataset was divided into training, validation, and testing
-            subsets using a 70:15:15 split.
-          </p>
-
-          <ul>
-
-            <li>
-              <strong>Total images:</strong> 245,196
-            </li>
-
-            <li>
-              <strong>Training:</strong> 70%
-            </li>
-
-            <li>
-              <strong>Validation:</strong> 15%
-            </li>
-
-            <li>
-              <strong>Testing:</strong> 15%
-            </li>
-
-            <li>
-              <strong>Image size:</strong> 224 × 224 pixels
-            </li>
-
-            <li>
-              <strong>Classes:</strong> Normal and Abnormal
-            </li>
-
-          </ul>
-
-          <p>
-            Images were normalized using the standard ImageNet mean and
-            standard deviation values. Horizontal flipping and small rotations
-            of up to 10 degrees were used as data augmentation techniques.
-          </p>
-
-        </section>
-
-
-        <!-- =================================
-             METHODOLOGY
-        ================================== -->
-
-        <section class="section">
-
-          <h2>
-            Methodology
-          </h2>
-
-          <p>
-            Four lightweight or deployment-oriented convolutional neural
-            network architectures were selected for comparison:
-            MobileNetV2, MobileNetV3-Small, EfficientNet-B0, and ShuffleNetV2.
-          </p>
-
-          <p>
-            All models were evaluated under the same experimental conditions
-            to provide a fair comparison. Training was performed for five
-            epochs using a batch size of 32.
-          </p>
-
-          <figure>
-
-            <img
-              src="working-diagram.png"
-              alt="GastroLite AI Working Diagram"
-            >
-
-            <figcaption>
-              Figure 1. Overall workflow of the GastroLite AI framework.
-            </figcaption>
-
-          </figure>
-
-        </section>
-
-
-        <!-- =================================
-             MODEL EVALUATION
-        ================================== -->
-
-        <section class="section">
-
-          <h2>
-            Model Evaluation
-          </h2>
-
-          <p>
-            The four selected architectures were compared using classification
-            accuracy along with resource-related measures such as parameter
-            count, model size, FLOPs, and inference time.
-          </p>
-
-          <div class="table-wrapper">
-
-            <table>
-
-              <thead>
-
-                <tr>
-
-                  <th>Model</th>
-                  <th>Test Accuracy</th>
-                  <th>Parameters</th>
-                  <th>Model Size</th>
-                  <th>FLOPs</th>
-                  <th>Inference / Image</th>
-
-                </tr>
-
-              </thead>
-
-              <tbody>
-
-                <tr>
-
-                  <td>MobileNetV2</td>
-                  <td>98.27%</td>
-                  <td>2.226M</td>
-                  <td>8.73 MB</td>
-                  <td>326.21M</td>
-                  <td>0.9157 ms</td>
-
-                </tr>
-
-                <tr>
-
-                  <td>MobileNetV3-Small</td>
-                  <td>98.42%</td>
-                  <td>1.520M</td>
-                  <td>5.93 MB</td>
-                  <td>61.46M</td>
-                  <td>0.4886 ms</td>
-
-                </tr>
-
-                <tr>
-
-                  <td>EfficientNet-B0</td>
-                  <td>98.86%</td>
-                  <td>4.010M</td>
-                  <td>15.59 MB</td>
-                  <td>413.87M</td>
-                  <td>1.1540 ms</td>
-
-                </tr>
-
-                <tr>
-
-                  <td>ShuffleNetV2</td>
-                  <td>97.86%</td>
-                  <td>1.256M</td>
-                  <td>4.96 MB</td>
-                  <td>151.69M</td>
-                  <td>0.4972 ms</td>
-
-                </tr>
-
-              </tbody>
-
-            </table>
-
-          </div>
-
-        </section>
-
-
-        <!-- =================================
-             RESOURCE AWARE
-        ================================== -->
-
-        <section class="section">
-
-          <h2>
-            Resource-Aware Model Selection
-          </h2>
-
-          <p>
-            The model selection process considered both predictive performance
-            and computational efficiency. Resource-related metrics were
-            normalized so that the different models could be compared using a
-            common scale.
-          </p>
-
-          <p>
-            Although EfficientNet-B0 achieved the highest test accuracy,
-            MobileNetV3-Small provided a more favorable overall balance between
-            accuracy, computational cost, model size, and inference speed.
-          </p>
-
-          <div class="selected-model">
-
-            <strong>
-              Selected Model: MobileNetV3-Small
-            </strong>
-
-            <p>
-              MobileNetV3-Small was selected for deployment because it combines
-              high classification accuracy with a significantly lower
-              computational requirement and smaller model size.
-            </p>
-
-          </div>
-
-        </section>
-
-
-        <!-- =================================
-             WEB PROTOTYPE
-        ================================== -->
-
-        <section class="section">
-
-          <h2>
-            From Experiment to Web Prototype
-          </h2>
-
-          <p>
-            To demonstrate the practical use of the selected model, the
-            trained MobileNetV3-Small model was integrated into a web-based
-            prototype.
-          </p>
-
-          <p>
-            The prototype allows a user to upload a histopathological image and
-            obtain a model prediction through a simple interface. The website
-            also provides supporting information related to gastric cancer
-            awareness and healthy practices.
-          </p>
-
-          <p>
-            The web application is intended as a research prototype for
-            demonstrating model deployment and interaction, rather than as a
-            clinical diagnostic system.
-          </p>
-
-        </section>
-
-
-        <!-- =================================
-             WEB APPLICATION
-        ================================== -->
-
-        <section class="section">
-
-          <h2>
-            Web Application Demonstration
-          </h2>
-
-          <p>
-            The following interfaces demonstrate the main components of the
-            GastroLite AI prototype.
-          </p>
-
-
-          <div class="gallery">
-
-
-            <figure>
-
-              <img
-                src="homepage.png"
-                alt="GastroLite AI Homepage"
-              >
-
-              <figcaption>
-                Homepage
-              </figcaption>
-
-            </figure>
-
-
-            <figure>
-
-              <img
-                src="about.png"
-                alt="GastroLite AI About Page"
-              >
-
-              <figcaption>
-                About the framework
-              </figcaption>
-
-            </figure>
-
-
-            <figure>
-
-              <img
-                src="analysis-upload.png"
-                alt="Image Upload Interface"
-              >
-
-              <figcaption>
-                Image upload and analysis
-              </figcaption>
-
-            </figure>
-
-
-            <figure>
-
-              <img
-                src="abnormal-result.png"
-                alt="Abnormal Classification Result"
-              >
-
-              <figcaption>
-                Abnormal classification result
-              </figcaption>
-
-            </figure>
-
-
-            <figure>
-
-              <img
-                src="normal-result.png"
-                alt="Normal Classification Result"
-              >
-
-              <figcaption>
-                Normal classification result
-              </figcaption>
-
-            </figure>
-
-
-            <figure>
-
-              <img
-                src="awareness.png"
-                alt="Gastric Cancer Awareness"
-              >
-
-              <figcaption>
-                Awareness information
-              </figcaption>
-
-            </figure>
-
-
-            <figure>
-
-              <img
-                src="healthy-tips.png"
-                alt="Healthy Tips"
-              >
-
-              <figcaption>
-                Healthy tips
-              </figcaption>
-
-            </figure>
-
-
-          </div>
-
-        </section>
-
-
-        <!-- =================================
-             RESULTS
-        ================================== -->
-
-        <section class="section">
-
-          <h2>
-            What the Results Mean
-          </h2>
-
-          <p>
-            The experimental results demonstrate that lightweight
-            architectures can achieve strong classification performance on
-            gastric histopathological images.
-          </p>
-
-          <p>
-            EfficientNet-B0 obtained the highest test accuracy among the four
-            evaluated models. However, it also required the highest number of
-            parameters and FLOPs and had the largest model size.
-          </p>
-
-          <p>
-            MobileNetV3-Small achieved 98.42% test accuracy while requiring
-            substantially fewer computational resources. Its 61.46M FLOPs,
-            5.93 MB model size, and 0.4886 ms inference time per image make it
-            particularly suitable for the deployment-oriented objective of
-            this work.
-          </p>
-
-        </section>
-
-
-        <!-- =================================
-             LIMITATIONS
-        ================================== -->
-
-        <section class="section">
-
-          <h2>
-            Limitations &amp; Future Work
-          </h2>
-
-          <p>
-            The current work represents a research prototype and has several
-            opportunities for further development.
-          </p>
-
-          <ul>
-
-            <li>
-              Evaluation on additional and more diverse datasets can improve
-              generalizability.
-            </li>
-
-            <li>
-              More extensive training and hyperparameter optimization can be
-              investigated.
-            </li>
-
-            <li>
-              Additional model compression techniques such as pruning or
-              quantization can be explored.
-            </li>
-
-            <li>
-              Future versions can investigate more advanced deployment
-              environments and hardware.
-            </li>
-
-            <li>
-              Further clinical validation would be required before any
-              real-world medical application.
-            </li>
-
-          </ul>
-
-        </section>
-
-
-        <!-- =================================
-             CONCLUSION
-        ================================== -->
-
-        <section class="section">
-
-          <h2>
-            Conclusion
-          </h2>
-
-          <p>
-            GastroLite AI presents a deployment-oriented approach to gastric
-            cancer histopathological image classification by considering both
-            predictive performance and computational efficiency.
-          </p>
-
-          <p>
-            Four lightweight deep learning architectures were experimentally
-            compared, and MobileNetV3-Small was selected as the deployment
-            model because of its favorable balance between accuracy and
-            resource requirements.
-          </p>
-
-          <p>
-            The work demonstrates how resource-aware model evaluation can help
-            bridge the gap between deep learning experimentation and practical
-            lightweight deployment.
-          </p>
-
-        </section>
-
-
-        <!-- =================================
-             KEYWORDS
-        ================================== -->
-
-        <div class="tags">
-
-          <span class="tag">
-            Gastric Cancer
-          </span>
-
-          <span class="tag">
-            Histopathology
-          </span>
-
-          <span class="tag">
-            Deep Learning
-          </span>
-
-          <span class="tag">
-            Lightweight CNN
-          </span>
-
-          <span class="tag">
-            MobileNetV3
-          </span>
-
-          <span class="tag">
-            Resource-Aware AI
-          </span>
-
-        </div>
-
-
-        <!-- =================================
-             HEALTH QUOTE
-        ================================== -->
-
-        <section class="health-quote">
-
-          <p>
-            “Awareness today can lead to better health tomorrow.”
-          </p>
-
-        </section>
-
-
-        <!-- =================================
-             QUERIES
-        ================================== -->
-
-        <section class="contact-section">
-
-          <h2>
-            For Any Queries
-          </h2>
-
-          <p class="contact-intro">
-            Have a question or would like to know more about this research?
-            Feel free to get in touch.
-          </p>
-
-
-          <div class="contact-details">
-
-
-            <!-- EMAIL -->
-
-            <a
-              href="mailto:2103a51473@sru.edu.in"
-              class="contact-item"
-            >
-
-              <span class="contact-icon">
-
-                <svg
-                  width="22"
-                  height="22"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-
-                  <rect
-                    x="3"
-                    y="5"
-                    width="18"
-                    height="14"
-                    rx="2"
-                  ></rect>
-
-                  <polyline
-                    points="3,7 12,13 21,7"
-                  ></polyline>
-
-                </svg>
-
-              </span>
-
-              <span>
-                2103a51473@sru.edu.in
-              </span>
-
-            </a>
-
-
-            <!-- PHONE -->
-
-            <a
-              href="tel:+918143633278"
-              class="contact-item"
-            >
-
-              <span class="contact-icon">
-
-                <svg
-                  width="22"
-                  height="22"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-
-                  <path
-                    d="M22 16.92v3a2 2 0 0 1-2.18 2
-                    19.79 19.79 0 0 1-8.63-3.07
-                    19.5 19.5 0 0 1-6-6
-                    19.79 19.79 0 0 1-3.07-8.67
-                    A2 2 0 0 1 4.11 2h3
-                    a2 2 0 0 1 2 1.72
-                    12.84 12.84 0 0 0 .7 2.81
-                    2 2 0 0 1-.45 2.11L8.09 9.91
-                    a16 16 0 0 0 6 6l1.27-1.27
-                    a2 2 0 0 1 2.11-.45
-                    12.84 12.84 0 0 0 2.81.7
-                    A2 2 0 0 1 22 16.92z"
-                  ></path>
-
-                </svg>
-
-              </span>
-
-              <span>
-                +91 81436 33278
-              </span>
-
-            </a>
-
-
-          </div>
-
-        </section>
-
-
-      </article>
-
-    </main>
-
-  </div>
-
-
-  <!-- =====================================
-       FOOTER
-  ====================================== -->
-
-  <footer class="site-footer">
+    <h2>
+        Dataset &amp; Preprocessing
+    </h2>
 
     <p>
-      @2026 All Rights Reserved
+        The GasHisSDB dataset was used for the experimental
+        evaluation. The dataset contains 245,196 gastric
+        histopathological images belonging to normal and
+        abnormal categories.
     </p>
 
-  </footer>
+    <p>
+        The dataset was divided into training, validation,
+        and testing subsets using a 70:15:15 split.
+    </p>
+
+    <ul>
+
+        <li>
+            <strong>Total images:</strong>
+            245,196
+        </li>
+
+        <li>
+            <strong>Training:</strong>
+            70%
+        </li>
+
+        <li>
+            <strong>Validation:</strong>
+            15%
+        </li>
+
+        <li>
+            <strong>Testing:</strong>
+            15%
+        </li>
+
+        <li>
+            <strong>Image size:</strong>
+            224 × 224 pixels
+        </li>
+
+        <li>
+            <strong>Classes:</strong>
+            Normal and Abnormal
+        </li>
+
+    </ul>
+
+    <p>
+        Images were normalized using the standard ImageNet
+        mean and standard deviation values. Horizontal flipping
+        and small rotations of up to 10 degrees were used as
+        data augmentation techniques.
+    </p>
+
+</div>
 
 
-  <!-- =====================================
-       READING PROGRESS SCRIPT
-  ====================================== -->
+<!-- =====================================================
+     METHODOLOGY
+===================================================== -->
 
-  <script>
+<div class="section methodology">
 
-    window.addEventListener("scroll", function () {
+    <h2>
+        Methodology
+    </h2>
 
-      const scrollTop =
-        document.documentElement.scrollTop ||
-        document.body.scrollTop;
+    <p>
+        Four lightweight or deployment-oriented convolutional
+        neural network architectures were selected for
+        comparison: MobileNetV2, MobileNetV3-Small,
+        EfficientNet-B0, and ShuffleNetV2.
+    </p>
 
-      const scrollHeight =
-        document.documentElement.scrollHeight -
-        document.documentElement.clientHeight;
+    <p>
+        All models were evaluated under the same experimental
+        conditions to provide a fair comparison. Training was
+        performed for five epochs using a batch size of 32.
+    </p>
 
-      const progress =
-        (scrollTop / scrollHeight) * 100;
 
-      document.getElementById("progressBar").style.width =
-        progress + "%";
+    <div class="block-diagram">
 
-    });
+        <img
+            src="working-diagram.png"
+            alt="GastroLite AI Working Diagram"
+        >
 
-  </script>
+        <p>
+            Figure 1. Overall workflow of the GastroLite AI framework.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MODEL EVALUATION
+===================================================== -->
+
+<div class="section evaluation">
+
+    <h2>
+        Model Evaluation
+    </h2>
+
+    <p>
+        The four selected architectures were compared using
+        classification accuracy along with resource-related
+        measures such as parameter count, model size, FLOPs,
+        and inference time.
+    </p>
+
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Model</th>
+
+                    <th>Test Accuracy</th>
+
+                    <th>Parameters</th>
+
+                    <th>Model Size</th>
+
+                    <th>FLOPs</th>
+
+                    <th>Inference / Image</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                <tr>
+
+                    <td>MobileNetV2</td>
+
+                    <td>98.27%</td>
+
+                    <td>2.226M</td>
+
+                    <td>8.73 MB</td>
+
+                    <td>326.21M</td>
+
+                    <td>0.9157 ms</td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>MobileNetV3-Small</td>
+
+                    <td>98.42%</td>
+
+                    <td>1.520M</td>
+
+                    <td>5.93 MB</td>
+
+                    <td>61.46M</td>
+
+                    <td>0.4886 ms</td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>EfficientNet-B0</td>
+
+                    <td>98.86%</td>
+
+                    <td>4.010M</td>
+
+                    <td>15.59 MB</td>
+
+                    <td>413.87M</td>
+
+                    <td>1.1540 ms</td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>ShuffleNetV2</td>
+
+                    <td>97.86%</td>
+
+                    <td>1.256M</td>
+
+                    <td>4.96 MB</td>
+
+                    <td>151.69M</td>
+
+                    <td>0.4972 ms</td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     RESOURCE AWARE
+===================================================== -->
+
+<div class="section resource">
+
+    <h2>
+        Resource-Aware Model Selection
+    </h2>
+
+    <p>
+        The model selection process considered both predictive
+        performance and computational efficiency. Resource-related
+        metrics were normalized so that the different models
+        could be compared using a common scale.
+    </p>
+
+    <p>
+        Although EfficientNet-B0 achieved the highest test
+        accuracy, MobileNetV3-Small provided a more favorable
+        overall balance between accuracy, computational cost,
+        model size, and inference speed.
+    </p>
+
+
+    <div class="selected-model">
+
+        <h3>
+            Selected Model: MobileNetV3-Small
+        </h3>
+
+        <p>
+            MobileNetV3-Small was selected for deployment
+            because it combines high classification accuracy
+            with a significantly lower computational requirement
+            and smaller model size.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     WEB PROTOTYPE
+===================================================== -->
+
+<div class="section prototype">
+
+    <h2>
+        From Experiment to Web Prototype
+    </h2>
+
+    <p>
+        To demonstrate the practical use of the selected model,
+        the trained MobileNetV3-Small model was integrated into
+        a web-based prototype.
+    </p>
+
+    <p>
+        The prototype allows a user to upload a histopathological
+        image and obtain a model prediction through a simple
+        interface. The website also provides supporting
+        information related to gastric cancer awareness and
+        healthy practices.
+    </p>
+
+    <p>
+        The web application is intended as a research prototype
+        for demonstrating model deployment and interaction,
+        rather than as a clinical diagnostic system.
+    </p>
+
+</div>
+
+
+<!-- =====================================================
+     WEB APPLICATION SLIDESHOW
+===================================================== -->
+
+<div class="slideshow-container">
+
+    <h2>
+        Web Application Demonstration
+    </h2>
+
+
+    <!-- HOME -->
+
+    <div class="slides">
+
+        <img
+            src="homepage.png"
+            alt="GastroLite AI Homepage"
+        >
+
+        <div class="caption">
+            Homepage
+        </div>
+
+    </div>
+
+
+    <!-- ABOUT -->
+
+    <div class="slides">
+
+        <img
+            src="about.png"
+            alt="About GastroLite AI"
+        >
+
+        <div class="caption">
+            About the framework
+        </div>
+
+    </div>
+
+
+    <!-- UPLOAD -->
+
+    <div class="slides">
+
+        <img
+            src="analysis-upload.png"
+            alt="Image Upload and Analysis"
+        >
+
+        <div class="caption">
+            Image upload and analysis
+        </div>
+
+    </div>
+
+
+    <!-- ABNORMAL RESULT -->
+
+    <div class="slides">
+
+        <img
+            src="abnormal-result.png"
+            alt="Abnormal Classification Result"
+        >
+
+        <div class="caption">
+            Abnormal classification result
+        </div>
+
+    </div>
+
+
+    <!-- NORMAL RESULT -->
+
+    <div class="slides">
+
+        <img
+            src="normal-result.png"
+            alt="Normal Classification Result"
+        >
+
+        <div class="caption">
+            Normal classification result
+        </div>
+
+    </div>
+
+
+    <!-- AWARENESS -->
+
+    <div class="slides">
+
+        <img
+            src="awareness.png"
+            alt="Gastric Cancer Awareness"
+        >
+
+        <div class="caption">
+            Gastric cancer awareness
+        </div>
+
+    </div>
+
+
+    <!-- HEALTHY TIPS -->
+
+    <div class="slides">
+
+        <img
+            src="healthy-tips.png"
+            alt="Healthy Tips"
+        >
+
+        <div class="caption">
+            Healthy tips
+        </div>
+
+    </div>
+
+
+    <!-- PREVIOUS -->
+
+    <a
+        class="prev"
+        onclick="changeSlide(-1)"
+    >
+        &#10094;
+    </a>
+
+
+    <!-- NEXT -->
+
+    <a
+        class="next"
+        onclick="changeSlide(1)"
+    >
+        &#10095;
+    </a>
+
+
+    <!-- DOTS -->
+
+    <div class="dots">
+
+        <span
+            class="dot"
+            onclick="currentSlide(1)"
+        ></span>
+
+        <span
+            class="dot"
+            onclick="currentSlide(2)"
+        ></span>
+
+        <span
+            class="dot"
+            onclick="currentSlide(3)"
+        ></span>
+
+        <span
+            class="dot"
+            onclick="currentSlide(4)"
+        ></span>
+
+        <span
+            class="dot"
+            onclick="currentSlide(5)"
+        ></span>
+
+        <span
+            class="dot"
+            onclick="currentSlide(6)"
+        ></span>
+
+        <span
+            class="dot"
+            onclick="currentSlide(7)"
+        ></span>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     WHAT THE RESULTS MEAN
+===================================================== -->
+
+<div class="section results">
+
+    <h2>
+        What the Results Mean
+    </h2>
+
+    <p>
+        The experimental results demonstrate that lightweight
+        architectures can achieve strong classification
+        performance on gastric histopathological images.
+    </p>
+
+    <p>
+        EfficientNet-B0 obtained the highest test accuracy
+        among the four evaluated models. However, it also
+        required the highest number of parameters and FLOPs
+        and had the largest model size.
+    </p>
+
+    <p>
+        MobileNetV3-Small achieved 98.42% test accuracy while
+        requiring substantially fewer computational resources.
+        Its 61.46M FLOPs, 5.93 MB model size, and 0.4886 ms
+        inference time per image make it particularly suitable
+        for the deployment-oriented objective of this work.
+    </p>
+
+
+    <div class="result-note">
+
+        <strong>
+            Key takeaway:
+        </strong>
+
+        A slightly lower accuracy can still be preferable
+        when the model provides a much better balance of
+        speed, size, and computational efficiency.
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     FUTURE WORK
+===================================================== -->
+
+<div class="section future">
+
+    <h2>
+        What Comes Next?
+    </h2>
+
+    <p>
+        The current work represents a research prototype and
+        has several opportunities for further development.
+    </p>
+
+    <ul>
+
+        <li>
+            Evaluation on additional and more diverse datasets
+            can improve generalizability.
+        </li>
+
+        <li>
+            More extensive training and hyperparameter
+            optimization can be investigated.
+        </li>
+
+        <li>
+            Additional model compression techniques such as
+            pruning or quantization can be explored.
+        </li>
+
+        <li>
+            Future versions can investigate more advanced
+            deployment environments and hardware.
+        </li>
+
+        <li>
+            Further clinical validation would be required
+            before any real-world medical application.
+        </li>
+
+    </ul>
+
+</div>
+
+
+<!-- =====================================================
+     THE BOTTOM LINE
+===================================================== -->
+
+<div class="section bottom-line">
+
+    <h2>
+        The Final Verdict
+    </h2>
+
+    <p>
+        GastroLite AI presents a deployment-oriented approach
+        to gastric cancer histopathological image classification
+        by considering both predictive performance and
+        computational efficiency.
+    </p>
+
+    <p>
+        Four lightweight deep learning architectures were
+        experimentally compared, and MobileNetV3-Small was
+        selected as the deployment model because of its
+        favorable balance between accuracy and resource
+        requirements.
+    </p>
+
+    <p>
+        The work demonstrates how resource-aware model
+        evaluation can help bridge the gap between deep
+        learning experimentation and practical lightweight
+        deployment.
+    </p>
+
+</div>
+
+
+<!-- =====================================================
+     HEALTH QUOTE
+===================================================== -->
+
+<div class="health-quote">
+
+    <p>
+        “Awareness today can lead to better health tomorrow.”
+    </p>
+
+</div>
+
+
+<!-- =====================================================
+     CONTACT
+===================================================== -->
+
+<div class="contact-details">
+
+    <h2>
+        📬 For Any Queries
+    </h2>
+
+    <p>
+        Have a question about the project or would like
+        to know more about the research? Feel free to
+        get in touch.
+    </p>
+
+    <p>
+           📧
+        <a href="mailto:ishaqmahvish1@gmail.com">
+            ishaqmahvish1@gmail.com
+        </a>
+    </p>
+
+    <p>
+        📞
+        <a href="tel:+917032125036">
+            +91 70321 25036
+		</a>
+    </p>
+
+</div>
+
+
+<!-- =====================================================
+     QUERY FORM
+===================================================== -->
+
+<div class="query-form">
+
+    <h3>
+        Have a Query?
+    </h3>
+
+    <form
+        action="#"
+        method="post"
+    >
+
+        <label for="name">
+            Name:
+        </label>
+
+        <input
+            type="text"
+            id="name"
+            name="name"
+            required
+        >
+
+
+        <label for="email">
+            Email:
+        </label>
+
+        <input
+            type="email"
+            id="email"
+            name="email"
+            required
+        >
+
+
+        <label for="query">
+            Type Your Query Here:
+        </label>
+
+        <textarea
+            id="query"
+            name="query"
+            required
+        ></textarea>
+
+
+        <button type="submit">
+            Submit Query
+        </button>
+
+    </form>
+
+</div>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<div class="footer">
+
+    <p>
+        @2026 All Rights Reserved
+    </p>
+
+</div>
+
+
+</div>
+
+
+<!-- =====================================================
+     SLIDESHOW JAVASCRIPT
+===================================================== -->
+
+<script>
+
+let slideIndex = 0;
+
+let slideTimer;
+
+
+/* Start slideshow */
+
+showSlides();
+
+
+function showSlides() {
+
+    let slides =
+        document.getElementsByClassName("slides");
+
+    let dots =
+        document.getElementsByClassName("dot");
+
+
+    /* Hide every slide */
+
+    for (
+        let i = 0;
+        i < slides.length;
+        i++
+    ) {
+
+        slides[i].style.display = "none";
+
+    }
+
+
+    /* Remove active dot */
+
+    for (
+        let i = 0;
+        i < dots.length;
+        i++
+    ) {
+
+        dots[i].classList.remove("active");
+
+    }
+
+
+    /* Move to next slide */
+
+    slideIndex++;
+
+
+    if (
+        slideIndex > slides.length
+    ) {
+
+        slideIndex = 1;
+
+    }
+
+
+    /* Show slide */
+
+    slides[
+        slideIndex - 1
+    ].style.display = "block";
+
+
+    /* Activate dot */
+
+    if (dots.length > 0) {
+
+        dots[
+            slideIndex - 1
+        ].classList.add("active");
+
+    }
+
+
+    /* 15 seconds */
+
+    slideTimer =
+        setTimeout(
+            showSlides,
+            15000
+        );
+
+}
+
+
+/* Previous / Next */
+
+function changeSlide(n) {
+
+    clearTimeout(slideTimer);
+
+    slideIndex += n - 1;
+
+    showSlides();
+
+}
+
+
+/* Select specific slide */
+
+function currentSlide(n) {
+
+    clearTimeout(slideTimer);
+
+    slideIndex = n - 1;
+
+    showSlides();
+
+}
+
+</script>
 
 
 </body>
+
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
