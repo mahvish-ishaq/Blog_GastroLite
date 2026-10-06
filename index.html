@@ -7,6 +7,7 @@
   <title>GastroLite AI | Research Blog</title>
 
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -20,10 +21,14 @@
     body {
       font-family: Georgia, "Times New Roman", serif;
       color: #243447;
-      background:
-        linear-gradient(rgba(248, 251, 252, 0.88), rgba(248, 251, 252, 0.94)),
-        url("assets/GastroLite Blog-Background.png") center top / cover fixed;
       line-height: 1.8;
+
+      background:
+        linear-gradient(
+          rgba(248, 251, 252, 0.84),
+          rgba(248, 251, 252, 0.92)
+        ),
+        url("blog-background.png") center top / cover fixed;
     }
 
     /* Reading progress */
@@ -32,13 +37,13 @@
       position: fixed;
       top: 0;
       left: 0;
-      height: 4px;
       width: 0%;
+      height: 4px;
       background: #4f7f8f;
       z-index: 9999;
     }
 
-    /* Masthead */
+    /* Header */
 
     .masthead {
       padding: 42px 20px 28px;
@@ -86,7 +91,7 @@
       color: #71808a;
     }
 
-    /* Main article */
+    /* Article */
 
     .article {
       width: 100%;
@@ -150,32 +155,11 @@
       font-weight: 600;
     }
 
-    .section h3 {
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 18px;
-      color: #456b78;
-      margin: 28px 0 12px;
-    }
-
     .section p {
       font-size: 17px;
       margin-bottom: 17px;
       color: #384b55;
     }
-
-    /* Highlight quote */
-
-    .highlight {
-      margin: 30px 0;
-      padding: 22px 28px;
-      border-left: 4px solid #739aaa;
-      background: rgba(232, 242, 245, 0.7);
-      font-size: 18px;
-      color: #36525e;
-      font-style: italic;
-    }
-
-    /* Lists */
 
     .section ul {
       margin: 15px 0 20px 25px;
@@ -185,6 +169,18 @@
       margin-bottom: 8px;
       font-size: 16px;
       color: #40535c;
+    }
+
+    /* Highlight */
+
+    .highlight {
+      margin: 30px 0;
+      padding: 22px 28px;
+      border-left: 4px solid #739aaa;
+      background: rgba(232, 242, 245, 0.7);
+      font-size: 18px;
+      color: #36525e;
+      font-style: italic;
     }
 
     /* Figures */
@@ -201,7 +197,8 @@
       margin: auto;
       border-radius: 8px;
       box-shadow: 0 8px 28px rgba(50, 70, 80, 0.12);
-      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      transition: transform 0.35s ease,
+                  box-shadow 0.35s ease;
     }
 
     figure img:hover {
@@ -216,7 +213,7 @@
       color: #74838b;
     }
 
-    /* Model table */
+    /* Table */
 
     .table-wrapper {
       overflow-x: auto;
@@ -260,9 +257,10 @@
 
     .selected-model strong {
       color: #315d6b;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
-    /* Gallery */
+    /* Screenshot gallery */
 
     .gallery {
       display: grid;
@@ -306,7 +304,6 @@
     .site-footer {
       text-align: center;
       padding: 22px 20px;
-      margin-top: 0;
       border-top: 1px solid rgba(60, 80, 100, 0.15);
       color: #64748b;
       font-family: Arial, Helvetica, sans-serif;
@@ -322,6 +319,7 @@
     /* Animation */
 
     @keyframes fadeUp {
+
       from {
         opacity: 0;
         transform: translateY(18px);
@@ -331,9 +329,10 @@
         opacity: 1;
         transform: translateY(0);
       }
+
     }
 
-    /* Responsive */
+    /* Mobile */
 
     @media (max-width: 768px) {
 
@@ -377,6 +376,7 @@
       .gallery img {
         height: auto;
       }
+
     }
 
     @media (max-width: 480px) {
@@ -405,9 +405,12 @@
       .hero h1 {
         font-size: 29px;
       }
+
     }
+
   </style>
 </head>
+
 
 <body>
 
@@ -417,21 +420,26 @@
 
   <!-- Header -->
   <header class="masthead">
+
     <div class="mast-inner">
 
       <div class="brand-row">
 
         <img
-          src="assets/logo.png"
+          src="logo.png"
           alt="GastroLite AI logo"
         >
 
         <div>
-          <h1 class="brand">GastroLite AI</h1>
+
+          <h1 class="brand">
+            GastroLite AI
+          </h1>
 
           <div class="kicker">
             Efficient Detection ✦ Lightweight Deployment
           </div>
+
         </div>
 
       </div>
@@ -441,10 +449,12 @@
       </div>
 
     </div>
+
   </header>
 
 
-  <!-- Main Article -->
+  <!-- Article -->
+
   <main class="article">
 
     <article class="paper">
@@ -452,7 +462,8 @@
       <div class="article-inner">
 
 
-        <!-- HERO -->
+        <!-- Title -->
+
         <section class="hero">
 
           <span class="eyebrow">
@@ -467,7 +478,8 @@
         </section>
 
 
-        <!-- INTRODUCTION -->
+        <!-- Introduction -->
+
         <section class="section">
 
           <h2>
@@ -500,7 +512,8 @@
         </section>
 
 
-        <!-- WHY LIGHTWEIGHT -->
+        <!-- Why Lightweight -->
+
         <section class="section">
 
           <h2>
@@ -514,15 +527,18 @@
           </p>
 
           <div class="highlight">
+
             The objective of GastroLite AI is therefore to identify a model that
             provides a strong balance between accuracy and resource efficiency,
             rather than selecting a model based only on the highest accuracy.
+
           </div>
 
         </section>
 
 
-        <!-- DATASET -->
+        <!-- Dataset -->
+
         <section class="section">
 
           <h2>
@@ -541,12 +557,31 @@
           </p>
 
           <ul>
-            <li><strong>Total images:</strong> 245,196</li>
-            <li><strong>Training:</strong> 70%</li>
-            <li><strong>Validation:</strong> 15%</li>
-            <li><strong>Testing:</strong> 15%</li>
-            <li><strong>Image size:</strong> 224 × 224 pixels</li>
-            <li><strong>Classes:</strong> Normal and Abnormal</li>
+
+            <li>
+              <strong>Total images:</strong> 245,196
+            </li>
+
+            <li>
+              <strong>Training:</strong> 70%
+            </li>
+
+            <li>
+              <strong>Validation:</strong> 15%
+            </li>
+
+            <li>
+              <strong>Testing:</strong> 15%
+            </li>
+
+            <li>
+              <strong>Image size:</strong> 224 × 224 pixels
+            </li>
+
+            <li>
+              <strong>Classes:</strong> Normal and Abnormal
+            </li>
+
           </ul>
 
           <p>
@@ -558,7 +593,8 @@
         </section>
 
 
-        <!-- METHODOLOGY -->
+        <!-- Methodology -->
+
         <section class="section">
 
           <h2>
@@ -580,7 +616,7 @@
           <figure>
 
             <img
-              src="assets/working-diagram.png"
+              src="working-diagram.png"
               alt="GastroLite AI working methodology"
             >
 
@@ -593,7 +629,8 @@
         </section>
 
 
-        <!-- MODEL EVALUATION -->
+        <!-- Model Evaluation -->
+
         <section class="section">
 
           <h2>
@@ -611,52 +648,64 @@
             <table>
 
               <thead>
+
                 <tr>
+
                   <th>Model</th>
                   <th>Test Accuracy</th>
                   <th>Parameters</th>
                   <th>Model Size</th>
                   <th>FLOPs</th>
                   <th>Inference / Image</th>
+
                 </tr>
+
               </thead>
 
               <tbody>
 
                 <tr>
+
                   <td>MobileNetV2</td>
                   <td>98.27%</td>
                   <td>2.226M</td>
                   <td>8.73 MB</td>
                   <td>326.21M</td>
                   <td>0.9157 ms</td>
+
                 </tr>
 
                 <tr>
+
                   <td>MobileNetV3-Small</td>
                   <td>98.42%</td>
                   <td>1.520M</td>
                   <td>5.93 MB</td>
                   <td>61.46M</td>
                   <td>0.4886 ms</td>
+
                 </tr>
 
                 <tr>
+
                   <td>EfficientNet-B0</td>
                   <td>98.86%</td>
                   <td>4.010M</td>
                   <td>15.59 MB</td>
                   <td>413.87M</td>
                   <td>1.1540 ms</td>
+
                 </tr>
 
                 <tr>
+
                   <td>ShuffleNetV2</td>
                   <td>97.86%</td>
                   <td>1.256M</td>
                   <td>4.96 MB</td>
                   <td>151.69M</td>
                   <td>0.4972 ms</td>
+
                 </tr>
 
               </tbody>
@@ -668,7 +717,8 @@
         </section>
 
 
-        <!-- RESOURCE AWARE -->
+        <!-- Resource Aware Selection -->
+
         <section class="section">
 
           <h2>
@@ -695,9 +745,11 @@
             </strong>
 
             <p style="margin-top: 10px;">
+
               MobileNetV3-Small was selected for deployment because it combines
               high classification accuracy with a significantly lower
               computational requirement and smaller model size.
+
             </p>
 
           </div>
@@ -705,7 +757,8 @@
         </section>
 
 
-        <!-- WEB PROTOTYPE -->
+        <!-- Web Prototype -->
+
         <section class="section">
 
           <h2>
@@ -734,7 +787,8 @@
         </section>
 
 
-        <!-- SCREENSHOTS -->
+        <!-- Web Application Screenshots -->
+
         <section class="section">
 
           <h2>
@@ -749,10 +803,11 @@
 
           <div class="gallery">
 
+
             <figure>
 
               <img
-                src="assets/homepage.png"
+                src="homepage.png"
                 alt="GastroLite AI homepage"
               >
 
@@ -766,7 +821,7 @@
             <figure>
 
               <img
-                src="assets/about.png"
+                src="about.png"
                 alt="GastroLite AI about page"
               >
 
@@ -780,7 +835,7 @@
             <figure>
 
               <img
-                src="assets/analysis-upload.png"
+                src="analysis-upload.png"
                 alt="Image upload interface"
               >
 
@@ -794,7 +849,7 @@
             <figure>
 
               <img
-                src="assets/abnormal-result.png"
+                src="abnormal-result.png"
                 alt="Abnormal classification result"
               >
 
@@ -805,10 +860,12 @@
             </figure>
 
 
+            <!-- NORMAL RESULT -->
+
             <figure>
 
               <img
-                src="assets/normal-result.png"
+                src="normal-result.png"
                 alt="Normal classification result"
               >
 
@@ -822,7 +879,7 @@
             <figure>
 
               <img
-                src="assets/awareness.png"
+                src="awareness.png"
                 alt="Gastric cancer awareness page"
               >
 
@@ -836,7 +893,7 @@
             <figure>
 
               <img
-                src="assets/healthy-tips.png"
+                src="healthy-tips.png"
                 alt="Healthy tips page"
               >
 
@@ -846,12 +903,14 @@
 
             </figure>
 
+
           </div>
 
         </section>
 
 
-        <!-- RESULTS -->
+        <!-- Results -->
+
         <section class="section">
 
           <h2>
@@ -881,7 +940,8 @@
         </section>
 
 
-        <!-- LIMITATIONS -->
+        <!-- Limitations -->
+
         <section class="section">
 
           <h2>
@@ -894,6 +954,7 @@
           </p>
 
           <ul>
+
             <li>
               Evaluation on additional and more diverse datasets can improve
               generalizability.
@@ -918,12 +979,14 @@
               Further clinical validation would be required before any
               real-world medical application.
             </li>
+
           </ul>
 
         </section>
 
 
-        <!-- CONCLUSION -->
+        <!-- Conclusion -->
+
         <section class="section">
 
           <h2>
@@ -953,6 +1016,7 @@
 
 
         <!-- Tags -->
+
         <div class="tags">
 
           <span class="tag">
@@ -990,20 +1054,25 @@
 
 
   <!-- Footer -->
+
   <footer class="site-footer">
-    <p>@2026 All Rights Reserved</p>
+
+    <p>
+      @2026 All Rights Reserved
+    </p>
+
   </footer>
 
 
-  <!-- JavaScript -->
-  <script>
+  <!-- Reading Progress Script -->
 
-    /* Reading progress bar */
+  <script>
 
     window.addEventListener("scroll", function () {
 
       const scrollTop =
-        document.documentElement.scrollTop || document.body.scrollTop;
+        document.documentElement.scrollTop ||
+        document.body.scrollTop;
 
       const scrollHeight =
         document.documentElement.scrollHeight -
