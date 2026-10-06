@@ -1,473 +1,1023 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="GastroLite AI — a research blog on resource-aware lightweight deep learning for gastric histopathological image classification.">
-<title>GastroLite AI | Research Blog</title>
-<style>
-:root{
-  --ink:#263b4b;
-  --heading:#123d5a;
-  --teal:#0b8f8a;
-  --mint:#16a89c;
-  --soft:#eef7fa;
-  --line:#d8e6eb;
-  --paper:rgba(255,255,255,.91);
-  --shadow:0 18px 55px rgba(22,61,84,.12);
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  color:var(--ink);
-  font-family:Georgia,"Times New Roman",serif;
-  line-height:1.82;
-  background:#eef7fa url("assets/blog-background.png") center top/cover fixed no-repeat;
-}
-body:before{
-  content:"";position:fixed;inset:0;z-index:-1;
-  background:rgba(245,250,252,.34);
-  pointer-events:none;
-}
-a{color:var(--teal)}
-.masthead{
-  background:rgba(255,255,255,.93);
-  border-bottom:1px solid var(--line);
-  padding:25px 20px 21px;
-}
-.mast-inner{max-width:950px;margin:auto;text-align:center}
-.brand-row{display:flex;justify-content:center;align-items:center;gap:14px}
-.brand-row img{width:58px;height:58px;object-fit:contain}
-.brand{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  font-size:clamp(1.7rem,4vw,2.35rem);
-  letter-spacing:.2px;
-  color:var(--heading);
-}
-.kicker{
-  margin:5px 0 0;
-  color:var(--teal);
-  font:700 .78rem/1.3 Arial,Helvetica,sans-serif;
-  text-transform:uppercase;
-  letter-spacing:1.5px;
-}
-.meta{
-  margin:12px 0 0;
-  color:#6c7d87;
-  font: .86rem/1.5 Arial,Helvetica,sans-serif;
-}
-.progress{height:3px;background:#dcebef;position:fixed;top:0;left:0;right:0;z-index:100}
-.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#13a79b,#5bc7d8)}
-.article{
-  width:min(900px,92%);
-  margin:34px auto 60px;
-}
-.paper{
-  background:var(--paper);
-  border:1px solid rgba(255,255,255,.85);
-  box-shadow:var(--shadow);
-  border-radius:6px;
-  overflow:hidden;
-}
-.article-inner{padding:clamp(28px,5vw,58px)}
-.hero{
-  text-align:center;
-  padding-bottom:35px;
-  border-bottom:1px solid var(--line);
-}
-.eyebrow{
-  display:inline-block;
-  padding:5px 12px;
-  border:1px solid #b7e3e1;
-  border-radius:30px;
-  color:#087f7b;
-  background:#effcfb;
-  font:700 .72rem/1.3 Arial,Helvetica,sans-serif;
-  text-transform:uppercase;
-  letter-spacing:1.1px;
-}
-.hero h1{
-  margin:18px auto 12px;
-  max-width:790px;
-  color:var(--heading);
-  font:700 clamp(2.15rem,6vw,3.55rem)/1.08 Arial,Helvetica,sans-serif;
-  letter-spacing:-1.3px;
-}
-.subtitle{
-  max-width:760px;
-  margin:0 auto;
-  color:#506673;
-  font-size:1.15rem;
-}
-.byline{
-  margin-top:18px;
-  color:#71818a;
-  font: .83rem/1.5 Arial,Helvetica,sans-serif;
-}
-.shareline{
-  margin-top:16px;
-  font: .78rem Arial,Helvetica,sans-serif;
-  color:#84949d;
-}
-h2{
-  margin:45px 0 13px;
-  color:var(--heading);
-  font:700 clamp(1.55rem,4vw,2.05rem)/1.25 Arial,Helvetica,sans-serif;
-}
-h3{
-  color:#126f77;
-  font:700 1.18rem/1.35 Arial,Helvetica,sans-serif;
-  margin:28px 0 7px;
-}
-p{margin:0 0 17px}
-.lead{
-  font-size:1.1rem;
-  color:#425967;
-}
-.dropcap:first-letter{
-  float:left;
-  font:700 4rem/.8 Georgia,serif;
-  color:var(--teal);
-  padding:7px 8px 0 0;
-}
-.quote{
-  margin:30px 0;
-  padding:20px 24px;
-  border-left:4px solid var(--mint);
-  background:#eff9fa;
-  color:#315667;
-  font-size:1.18rem;
-  font-style:italic;
-}
-.figure{
-  margin:28px 0 32px;
-  text-align:center;
-}
-.figure img{
-  display:block;
-  width:100%;
-  max-height:700px;
-  object-fit:contain;
-  margin:auto;
-  background:white;
-  border:1px solid var(--line);
-}
-figcaption{
-  margin-top:9px;
-  color:#74858e;
-  font: .78rem/1.5 Arial,Helvetica,sans-serif;
-}
-.snapshot{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-  margin:25px 0 28px;
-}
-.snapshot div{
-  background:#f3f9fa;
-  border:1px solid var(--line);
-  padding:15px;
-  text-align:center;
-}
-.snapshot strong{
-  display:block;
-  color:var(--teal);
-  font:700 1.35rem Arial,Helvetica,sans-serif;
-}
-.snapshot span{
-  color:#6c7c85;
-  font:.75rem Arial,Helvetica,sans-serif;
-}
-.table-wrap{overflow-x:auto;margin:22px 0}
-table{
-  width:100%;
-  border-collapse:collapse;
-  font: .86rem/1.5 Arial,Helvetica,sans-serif;
-  background:#fff;
-}
-th,td{
-  padding:11px 12px;
-  border-bottom:1px solid var(--line);
-  text-align:left;
-  white-space:nowrap;
-}
-th{background:#123f59;color:#fff}
-tr:nth-child(even) td{background:#f7fbfc}
-.selected td{background:#eaf9f6!important;font-weight:600}
-.keyfinding{
-  margin:25px 0;
-  padding:20px 22px;
-  background:linear-gradient(120deg,#eefaf8,#f3f9fc);
-  border:1px solid #c9e8e5;
-}
-.keyfinding strong{
-  display:block;
-  margin-bottom:5px;
-  color:#087d78;
-  font:700 .82rem Arial,Helvetica,sans-serif;
-  text-transform:uppercase;
-  letter-spacing:1px;
-}
-.gallery{
-  position:relative;
-  margin:25px 0 8px;
-  background:#edf5f7;
-  border:1px solid var(--line);
-}
-.slide{display:none}
-.slide.active{display:block}
-.slide img{
-  display:block;width:100%;height:auto;max-height:620px;
-  object-fit:contain;background:#f8fbfc;
-}
-.caption{
-  text-align:center;padding:11px 35px;
-  color:#536a77;background:#fff;
-  font: .78rem/1.5 Arial,Helvetica,sans-serif;
-}
-.slide-btn{
-  position:absolute;top:46%;
-  border:0;background:rgba(18,63,89,.82);color:#fff;
-  width:38px;height:45px;cursor:pointer;font-size:22px;
-}
-.slide-btn:hover{background:var(--teal)}
-.prev{left:10px}.next{right:10px}
-.dots{text-align:center;padding:10px}
-.dot{
-  display:inline-block;width:8px;height:8px;border-radius:50%;
-  background:#b7cbd1;margin:0 4px;cursor:pointer;
-}
-.dot.active{background:var(--teal);transform:scale(1.25)}
-.note{
-  margin:25px 0;
-  padding:15px 18px;
-  background:#fff8e9;
-  border-left:3px solid #d7a63c;
-  color:#665633;
-  font-size:.95rem;
-}
-.tags{
-  margin-top:35px;padding-top:18px;border-top:1px solid var(--line);
-  font: .75rem Arial,Helvetica,sans-serif;color:#71838c;
-}
-.tags span{
-  display:inline-block;padding:5px 9px;margin:3px;
-  background:#edf6f8;border-radius:15px;
-}
-.footer{
-  text-align:center;
-  padding:28px 18px;
-  color:#5e717b;
-  font: .78rem/1.6 Arial,Helvetica,sans-serif;
-}
-.footer strong{color:#1d5269}
-@media(max-width:700px){
-  .article{width:95%;margin:18px auto 35px}
-  .article-inner{padding:23px 19px}
-  .snapshot{grid-template-columns:1fr}
-  .hero h1{letter-spacing:-.6px}
-  body{background-attachment:scroll}
-}
-@media(prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  *{animation:none!important;transition:none!important}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>GastroLite AI | Research Blog</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      color: #243447;
+      background:
+        linear-gradient(rgba(248, 251, 252, 0.88), rgba(248, 251, 252, 0.94)),
+        url("assets/GastroLite Blog-Background.png") center top / cover fixed;
+      line-height: 1.8;
+    }
+
+    /* Reading progress */
+
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      width: 0%;
+      background: #4f7f8f;
+      z-index: 9999;
+    }
+
+    /* Masthead */
+
+    .masthead {
+      padding: 42px 20px 28px;
+      border-bottom: 1px solid rgba(70, 90, 105, 0.16);
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(8px);
+    }
+
+    .mast-inner {
+      max-width: 1050px;
+      margin: auto;
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand-row img {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+    }
+
+    .brand {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 30px;
+      color: #294c5a;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+
+    .kicker {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      color: #607d8b;
+      letter-spacing: 0.8px;
+    }
+
+    .meta {
+      margin-top: 18px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      color: #71808a;
+    }
+
+    /* Main article */
+
+    .article {
+      width: 100%;
+      padding: 50px 20px;
+    }
+
+    .paper {
+      max-width: 1050px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.91);
+      border: 1px solid rgba(70, 90, 105, 0.12);
+      box-shadow: 0 12px 45px rgba(60, 80, 95, 0.08);
+    }
+
+    .article-inner {
+      max-width: 900px;
+      margin: auto;
+      padding: 55px 65px 65px;
+    }
+
+    /* Hero */
+
+    .hero {
+      padding-bottom: 42px;
+      margin-bottom: 45px;
+      border-bottom: 1px solid rgba(70, 90, 105, 0.16);
+      animation: fadeUp 0.9s ease both;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      color: #638795;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(32px, 4.5vw, 52px);
+      line-height: 1.18;
+      font-weight: 600;
+      color: #213f4a;
+    }
+
+    /* Sections */
+
+    .section {
+      margin-bottom: 55px;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .section h2 {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 25px;
+      line-height: 1.3;
+      color: #315b69;
+      margin-bottom: 18px;
+      font-weight: 600;
+    }
+
+    .section h3 {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 18px;
+      color: #456b78;
+      margin: 28px 0 12px;
+    }
+
+    .section p {
+      font-size: 17px;
+      margin-bottom: 17px;
+      color: #384b55;
+    }
+
+    /* Highlight quote */
+
+    .highlight {
+      margin: 30px 0;
+      padding: 22px 28px;
+      border-left: 4px solid #739aaa;
+      background: rgba(232, 242, 245, 0.7);
+      font-size: 18px;
+      color: #36525e;
+      font-style: italic;
+    }
+
+    /* Lists */
+
+    .section ul {
+      margin: 15px 0 20px 25px;
+    }
+
+    .section li {
+      margin-bottom: 8px;
+      font-size: 16px;
+      color: #40535c;
+    }
+
+    /* Figures */
+
+    figure {
+      margin: 35px auto;
+      text-align: center;
+    }
+
+    figure img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: auto;
+      border-radius: 8px;
+      box-shadow: 0 8px 28px rgba(50, 70, 80, 0.12);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    figure img:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 32px rgba(50, 70, 80, 0.17);
+    }
+
+    figcaption {
+      margin-top: 11px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      color: #74838b;
+    }
+
+    /* Model table */
+
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 30px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      background: rgba(255, 255, 255, 0.75);
+    }
+
+    th {
+      background: #e7f0f3;
+      color: #345765;
+      font-weight: 600;
+    }
+
+    th,
+    td {
+      padding: 12px 10px;
+      border: 1px solid #d7e1e5;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    tr:hover td {
+      background: #f5f9fa;
+    }
+
+    /* Selected model */
+
+    .selected-model {
+      margin: 30px 0;
+      padding: 25px 28px;
+      border: 1px solid #cbdde3;
+      background: rgba(239, 247, 249, 0.78);
+    }
+
+    .selected-model strong {
+      color: #315d6b;
+    }
+
+    /* Gallery */
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+      margin-top: 30px;
+    }
+
+    .gallery figure {
+      margin: 0;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    /* Tags */
+
+    .tags {
+      margin-top: 45px;
+      padding-top: 25px;
+      border-top: 1px solid rgba(70, 90, 105, 0.15);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .tag {
+      display: inline-block;
+      margin: 5px 5px 5px 0;
+      padding: 6px 12px;
+      border: 1px solid #c9dce2;
+      border-radius: 20px;
+      font-size: 12px;
+      color: #577582;
+      background: rgba(245, 250, 251, 0.8);
+    }
+
+    /* Footer */
+
+    .site-footer {
+      text-align: center;
+      padding: 22px 20px;
+      margin-top: 0;
+      border-top: 1px solid rgba(60, 80, 100, 0.15);
+      color: #64748b;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.3px;
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .site-footer p {
+      margin: 0;
+    }
+
+    /* Animation */
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+
+    @media (max-width: 768px) {
+
+      .masthead {
+        padding: 30px 18px 22px;
+      }
+
+      .brand-row img {
+        width: 58px;
+        height: 58px;
+      }
+
+      .brand {
+        font-size: 25px;
+      }
+
+      .article {
+        padding: 25px 12px;
+      }
+
+      .article-inner {
+        padding: 38px 25px 45px;
+      }
+
+      .hero h1 {
+        font-size: 34px;
+      }
+
+      .section h2 {
+        font-size: 22px;
+      }
+
+      .section p {
+        font-size: 16px;
+      }
+
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery img {
+        height: auto;
+      }
+    }
+
+    @media (max-width: 480px) {
+
+      .brand-row {
+        align-items: flex-start;
+      }
+
+      .brand-row img {
+        width: 50px;
+        height: 50px;
+      }
+
+      .brand {
+        font-size: 22px;
+      }
+
+      .kicker {
+        font-size: 11px;
+      }
+
+      .article-inner {
+        padding: 30px 18px 40px;
+      }
+
+      .hero h1 {
+        font-size: 29px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="progress"><span id="progressBar"></span></div>
+  <!-- Reading Progress -->
+  <div class="progress-bar" id="progressBar"></div>
 
-<header class="masthead">
-  <div class="mast-inner">
-    <div class="brand-row">
-      <img src="assets/logo.png" alt="GastroLite AI logo">
-      <div>
-        <h1 class="brand">GastroLite AI</h1>
-        <div class="kicker">Research Blog · Lightweight Deep Learning</div>
+
+  <!-- Header -->
+  <header class="masthead">
+    <div class="mast-inner">
+
+      <div class="brand-row">
+
+        <img
+          src="assets/logo.png"
+          alt="GastroLite AI logo"
+        >
+
+        <div>
+          <h1 class="brand">GastroLite AI</h1>
+
+          <div class="kicker">
+            Efficient Detection ✦ Lightweight Deployment
+          </div>
+        </div>
+
       </div>
+
+      <div class="meta">
+        - Written by Mahvish Ishaq
+      </div>
+
     </div>
-    <div class="meta">M.Tech Research Project · SR University · 2026</div>
-  </div>
-</header>
+  </header>
 
-<main class="article">
-<article class="paper">
-<div class="article-inner">
 
-<section class="hero">
-  <span class="eyebrow">Research Project</span>
-  <h1>GastroLite AI: A Resource-Aware Approach to Gastric Histopathological Image Classification</h1>
-  <p class="subtitle">Exploring whether lightweight deep learning models can provide an effective balance between classification performance and the computational requirements of deployment.</p>
-  <div class="byline">By Mahvish Ishaq · M.Tech CSE</div>
-  <div class="shareline">Gastric histopathology · Lightweight CNNs · Resource-aware evaluation · Web deployment</div>
-</section>
+  <!-- Main Article -->
+  <main class="article">
 
-<section>
-<h2>Introduction</h2>
-<p class="lead dropcap">Gastric cancer is a major health concern, and histopathological examination plays an important role in studying tissue abnormalities. Deep learning has become useful for image-based classification, but high-performing models can also introduce greater computational and storage requirements.</p>
-<p>This motivated the development of <strong>GastroLite AI</strong>, a deployment-oriented research framework that investigates lightweight convolutional neural network architectures for gastric histopathological image classification. Rather than considering accuracy alone, the project evaluates the models from both performance and resource perspectives.</p>
-<p>The objective is not to create a clinical diagnostic system. Instead, the work investigates a practical research question: <em>how can a compact deep learning model provide strong classification performance while remaining comparatively efficient for deployment?</em></p>
-</section>
+    <article class="paper">
 
-<section>
-<h2>Why a Lightweight Model?</h2>
-<p>In an image-classification system, accuracy is only one part of the picture. The number of model parameters, storage size, floating-point operations, inference latency, and training requirements can affect how easily a model can be deployed.</p>
-<div class="quote">“The goal of GastroLite AI is not simply to find the most accurate model, but to identify a practical balance between predictive performance and resource requirements.”</div>
-<p>This resource-aware perspective is particularly relevant when a model is intended to move beyond experimentation and into a usable software prototype.</p>
-</section>
+      <div class="article-inner">
 
-<section>
-<h2>Dataset &amp; Preprocessing</h2>
-<p>The project uses the <strong>GasHisSDB</strong> histopathological image dataset. The images are used for binary classification into <strong>Normal</strong> and <strong>Abnormal</strong> categories.</p>
-<div class="snapshot">
-  <div><strong>245,196</strong><span>Total images</span></div>
-  <div><strong>70 : 15 : 15</strong><span>Training · Validation · Testing</span></div>
-  <div><strong>224 × 224</strong><span>Input image size</span></div>
-</div>
-<p>Images are resized to 224 × 224 pixels and normalized using the standard ImageNet mean and standard deviation. Training augmentation includes horizontal flipping and rotation of up to 10 degrees. The same overall preprocessing approach is used for the model comparison.</p>
-</section>
 
-<section>
-<h2>Methodology</h2>
-<p>The experimental workflow begins with dataset preparation and preprocessing, followed by model training and validation. Four lightweight CNN architectures are then evaluated using the defined experimental setup.</p>
+        <!-- HERO -->
+        <section class="hero">
 
-<figure class="figure">
-  <img src="assets/working-diagram.png" alt="GastroLite AI working diagram" loading="lazy">
-  <figcaption>Figure 1. GastroLite AI workflow from dataset preparation and preprocessing to resource-aware model selection and web deployment.</figcaption>
-</figure>
+          <span class="eyebrow">
+            Research Project
+          </span>
 
-<h3>Four architectures were compared</h3>
-<p><strong>MobileNetV2</strong>, <strong>MobileNetV3-Small</strong>, <strong>EfficientNet-B0</strong>, and <strong>ShuffleNetV2</strong> were selected for comparison because they represent compact CNN architectures suitable for resource-conscious experimentation.</p>
-<p>The reported comparison uses five training epochs and a batch size of 32. After classification performance was evaluated, resource measurements were considered to identify the model offering the most suitable overall trade-off for the prototype.</p>
-</section>
+          <h1>
+            A Deployment-Oriented Resource-Aware Lightweight Deep Learning Framework
+            for Gastric Cancer Histopathological Classification
+          </h1>
 
-<section>
-<h2>Model Evaluation</h2>
-<p>The following table summarizes the reported results used in the project comparison.</p>
+        </section>
 
-<div class="table-wrap">
-<table>
-<thead>
-<tr><th>Model</th><th>Test Accuracy</th><th>Parameters</th><th>Size</th><th>FLOPs</th><th>Inference / Image</th></tr>
-</thead>
-<tbody>
-<tr><td>MobileNetV2</td><td>98.27%</td><td>2.226M</td><td>8.73 MB</td><td>326.21M</td><td>0.9157 ms</td></tr>
-<tr class="selected"><td>MobileNetV3-Small</td><td>98.42%</td><td>1.520M</td><td>5.93 MB</td><td>61.46M</td><td>0.4886 ms</td></tr>
-<tr><td>EfficientNet-B0</td><td>98.86%</td><td>4.010M</td><td>15.59 MB</td><td>413.87M</td><td>1.1540 ms</td></tr>
-<tr><td>ShuffleNetV2</td><td>97.86%</td><td>1.256M</td><td>4.96 MB</td><td>151.69M</td><td>0.4972 ms</td></tr>
-</tbody>
-</table>
-</div>
 
-<div class="keyfinding">
-<strong>Key finding</strong>
-Although EfficientNet-B0 achieved the highest reported test accuracy, MobileNetV3-Small offered a strong resource-performance balance, with a compact 5.93 MB model, 61.46M FLOPs, and the lowest reported per-image inference time among the four models. It was therefore selected for the deployment prototype.
-</div>
-</section>
+        <!-- INTRODUCTION -->
+        <section class="section">
 
-<section>
-<h2>Resource-Aware Model Selection</h2>
-<p>The project does not treat model selection as an accuracy-only problem. Performance and cost-related measurements are normalized so that the different metrics can be considered together. Cost-oriented metrics are inverted during normalization, allowing lower resource usage to contribute positively to the overall resource-aware score.</p>
-<p>This approach makes the comparison more deployment-oriented: a model that is slightly more accurate but substantially larger or more computationally demanding does not automatically become the preferred model.</p>
-<p>Based on the project's reported resource-aware assessment, <strong>MobileNetV3-Small</strong> was selected as the model used in the web demonstration.</p>
-</section>
+          <h2>
+            Introduction
+          </h2>
 
-<section>
-<h2>From Experiment to Web Prototype</h2>
-<p>After model evaluation, the selected model was integrated into a web-based prototype. The purpose of the interface is to demonstrate the complete flow from image upload to model inference and presentation of the predicted category.</p>
-<p>The prototype allows a user to upload a gastric histopathological image, process it using the trained MobileNetV3-Small model, and view the resulting <strong>Normal</strong> or <strong>Abnormal</strong> classification together with the displayed confidence value.</p>
+          <p>
+            Gastric cancer is a major health concern, and histopathological
+            examination plays an important role in identifying abnormal tissue.
+            However, examining large numbers of histopathological images can be
+            time-consuming and requires considerable expertise.
+          </p>
 
-<figure class="figure">
-  <img src="assets/homepage.png" alt="GastroLite AI home page" loading="lazy">
-  <figcaption>Figure 2. GastroLite AI web prototype home page.</figcaption>
-</figure>
-</section>
+          <p>
+            Deep learning has shown strong potential for automated
+            histopathological image classification. However, highly accurate
+            deep learning models can also require considerable computational
+            resources, making them less suitable for lightweight or
+            deployment-oriented applications.
+          </p>
 
-<section>
-<h2>Web Application Demonstration</h2>
-<p>The following gallery shows selected interfaces implemented as part of the project. These screenshots are presented as a demonstration of the prototype rather than as separate website sections.</p>
+          <p>
+            GastroLite AI explores a resource-aware approach by evaluating
+            lightweight deep learning architectures for gastric cancer
+            histopathological classification and selecting a model that provides
+            a practical balance between classification performance and
+            computational efficiency.
+          </p>
 
-<div class="gallery">
-  <div class="slide active"><img src="assets/homepage.png" alt="GastroLite AI home page"><div class="caption">Home page — introducing the project and the analysis workflow.</div></div>
-  <div class="slide"><img src="assets/about.png" alt="GastroLite AI about page"><div class="caption">About page — project objective, selected model, dataset, and research scope.</div></div>
-  <div class="slide"><img src="assets/analysis-upload.png" alt="GastroLite AI image upload interface"><div class="caption">AI analysis — uploading a histopathological image for classification.</div></div>
-  <div class="slide"><img src="assets/abnormal-result.png" alt="GastroLite AI abnormal result"><div class="caption">Example output — an Abnormal classification result.</div></div>
-  <div class="slide"><img src="assets/normal-result.png" alt="GastroLite AI normal result"><div class="caption">Example output — a Normal classification result.</div></div>
-  <div class="slide"><img src="assets/awareness.png" alt="GastroLite AI gastric cancer awareness page"><div class="caption">Educational content — gastric cancer awareness information.</div></div>
-  <div class="slide"><img src="assets/healthy-tips.png" alt="GastroLite AI healthy living tips page"><div class="caption">Educational content — general healthy living information.</div></div>
-  <button class="slide-btn prev" type="button" aria-label="Previous screenshot" onclick="moveSlide(-1)">‹</button>
-  <button class="slide-btn next" type="button" aria-label="Next screenshot" onclick="moveSlide(1)">›</button>
-</div>
-<div class="dots" aria-label="Choose screenshot"></div>
-</section>
+        </section>
 
-<section>
-<h2>What the Results Mean</h2>
-<p>The experiments show that lightweight architectures can achieve high classification accuracy on the selected dataset while differing substantially in their computational requirements. This highlights why deployment-oriented evaluation should consider more than a single predictive metric.</p>
-<p>MobileNetV3-Small was chosen for the prototype because its resource profile makes it attractive for a lightweight implementation. The selection should be understood within the scope of this experiment; it does not imply that the model is clinically superior to the other architectures.</p>
-<div class="note"><strong>Important:</strong> GastroLite AI is a research and educational prototype. Its predictions are not medical diagnoses and should not be used to make clinical decisions or replace evaluation by qualified healthcare professionals.</div>
-</section>
 
-<section>
-<h2>Limitations &amp; Future Work</h2>
-<p>The current work is based on a public dataset and a defined experimental setup. Further studies would be needed to determine how the selected model behaves on independent datasets and images acquired under different conditions.</p>
-<p>Future work could include external validation, broader dataset testing, explainability studies, model calibration, usability evaluation, and assessment with clinical experts. These steps would be important before considering any real-world clinical application.</p>
-</section>
+        <!-- WHY LIGHTWEIGHT -->
+        <section class="section">
 
-<section>
-<h2>Conclusion</h2>
-<p>GastroLite AI presents a resource-aware approach to gastric histopathological image classification by evaluating lightweight deep learning architectures from both performance and computational perspectives. Four models were compared, and MobileNetV3-Small was selected for the deployment prototype based on the project's reported overall trade-off.</p>
-<p>The project demonstrates that model selection for deployment can be approached as a balance between what a model can predict and what it costs to run. The accompanying web prototype provides a simple demonstration of that selected model in an end-to-end workflow.</p>
-</section>
+          <h2>
+            Why a Lightweight Model?
+          </h2>
 
-<div class="tags">
-  <strong>Topics:</strong>
-  <span>Gastric Histopathology</span>
-  <span>Deep Learning</span>
-  <span>MobileNetV3-Small</span>
-  <span>Resource-Aware AI</span>
-  <span>Medical Image Classification</span>
-  <span>Web Deployment</span>
-</div>
+          <p>
+            A model is not evaluated only by its classification accuracy.
+            Parameters, model size, computational cost, and inference time are
+            also important when the model is intended for practical deployment.
+          </p>
 
-</div>
-</article>
+          <div class="highlight">
+            The objective of GastroLite AI is therefore to identify a model that
+            provides a strong balance between accuracy and resource efficiency,
+            rather than selecting a model based only on the highest accuracy.
+          </div>
 
-<footer class="footer">
-  <strong>GastroLite AI</strong> · M.Tech Research Project · SR University<br>
-  Created by Mahvish Ishaq · 2026
-</footer>
-</main>
+        </section>
 
-<script>
-const progress=document.getElementById("progressBar");
-window.addEventListener("scroll",()=>{
-  const h=document.documentElement;
-  const pct=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;
-  progress.style.width=pct+"%";
-});
 
-let current=0;
-const slides=[...document.querySelectorAll(".slide")];
-const dots=document.querySelector(".dots");
-slides.forEach((_,i)=>{
-  const d=document.createElement("span");
-  d.className="dot"+(i===0?" active":"");
-  d.onclick=()=>show(i);
-  dots.appendChild(d);
-});
-function show(n){
-  current=(n+slides.length)%slides.length;
-  slides.forEach((s,i)=>s.classList.toggle("active",i===current));
-  [...dots.children].forEach((d,i)=>d.classList.toggle("active",i===current));
-}
-function moveSlide(n){show(current+n)}
-let timer=setInterval(()=>show(current+1),5500);
-document.querySelector(".gallery").addEventListener("mouseenter",()=>clearInterval(timer));
-document.querySelector(".gallery").addEventListener("mouseleave",()=>timer=setInterval(()=>show(current+1),5500));
-</script>
+        <!-- DATASET -->
+        <section class="section">
+
+          <h2>
+            Dataset &amp; Preprocessing
+          </h2>
+
+          <p>
+            The GasHisSDB dataset was used for the experimental evaluation.
+            The dataset contains 245,196 gastric histopathological images
+            belonging to normal and abnormal categories.
+          </p>
+
+          <p>
+            The dataset was divided into training, validation, and testing
+            subsets using a 70:15:15 split.
+          </p>
+
+          <ul>
+            <li><strong>Total images:</strong> 245,196</li>
+            <li><strong>Training:</strong> 70%</li>
+            <li><strong>Validation:</strong> 15%</li>
+            <li><strong>Testing:</strong> 15%</li>
+            <li><strong>Image size:</strong> 224 × 224 pixels</li>
+            <li><strong>Classes:</strong> Normal and Abnormal</li>
+          </ul>
+
+          <p>
+            Images were normalized using the standard ImageNet mean and
+            standard deviation values. Horizontal flipping and small rotations
+            of up to 10 degrees were used as data augmentation techniques.
+          </p>
+
+        </section>
+
+
+        <!-- METHODOLOGY -->
+        <section class="section">
+
+          <h2>
+            Methodology
+          </h2>
+
+          <p>
+            Four lightweight or deployment-oriented convolutional neural
+            network architectures were selected for comparison:
+            MobileNetV2, MobileNetV3-Small, EfficientNet-B0, and ShuffleNetV2.
+          </p>
+
+          <p>
+            All models were evaluated under the same experimental conditions
+            to provide a fair comparison. Training was performed for five
+            epochs using a batch size of 32.
+          </p>
+
+          <figure>
+
+            <img
+              src="assets/working-diagram.png"
+              alt="GastroLite AI working methodology"
+            >
+
+            <figcaption>
+              Figure 1. Overall workflow of the GastroLite AI framework.
+            </figcaption>
+
+          </figure>
+
+        </section>
+
+
+        <!-- MODEL EVALUATION -->
+        <section class="section">
+
+          <h2>
+            Model Evaluation
+          </h2>
+
+          <p>
+            The four selected architectures were compared using classification
+            accuracy along with resource-related measures such as parameter
+            count, model size, FLOPs, and inference time.
+          </p>
+
+          <div class="table-wrapper">
+
+            <table>
+
+              <thead>
+                <tr>
+                  <th>Model</th>
+                  <th>Test Accuracy</th>
+                  <th>Parameters</th>
+                  <th>Model Size</th>
+                  <th>FLOPs</th>
+                  <th>Inference / Image</th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+                <tr>
+                  <td>MobileNetV2</td>
+                  <td>98.27%</td>
+                  <td>2.226M</td>
+                  <td>8.73 MB</td>
+                  <td>326.21M</td>
+                  <td>0.9157 ms</td>
+                </tr>
+
+                <tr>
+                  <td>MobileNetV3-Small</td>
+                  <td>98.42%</td>
+                  <td>1.520M</td>
+                  <td>5.93 MB</td>
+                  <td>61.46M</td>
+                  <td>0.4886 ms</td>
+                </tr>
+
+                <tr>
+                  <td>EfficientNet-B0</td>
+                  <td>98.86%</td>
+                  <td>4.010M</td>
+                  <td>15.59 MB</td>
+                  <td>413.87M</td>
+                  <td>1.1540 ms</td>
+                </tr>
+
+                <tr>
+                  <td>ShuffleNetV2</td>
+                  <td>97.86%</td>
+                  <td>1.256M</td>
+                  <td>4.96 MB</td>
+                  <td>151.69M</td>
+                  <td>0.4972 ms</td>
+                </tr>
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+        </section>
+
+
+        <!-- RESOURCE AWARE -->
+        <section class="section">
+
+          <h2>
+            Resource-Aware Model Selection
+          </h2>
+
+          <p>
+            The model selection process considered both predictive performance
+            and computational efficiency. Resource-related metrics were
+            normalized so that the different models could be compared using a
+            common scale.
+          </p>
+
+          <p>
+            Although EfficientNet-B0 achieved the highest test accuracy,
+            MobileNetV3-Small provided a more favorable overall balance between
+            accuracy, computational cost, model size, and inference speed.
+          </p>
+
+          <div class="selected-model">
+
+            <strong>
+              Selected model: MobileNetV3-Small
+            </strong>
+
+            <p style="margin-top: 10px;">
+              MobileNetV3-Small was selected for deployment because it combines
+              high classification accuracy with a significantly lower
+              computational requirement and smaller model size.
+            </p>
+
+          </div>
+
+        </section>
+
+
+        <!-- WEB PROTOTYPE -->
+        <section class="section">
+
+          <h2>
+            From Experiment to Web Prototype
+          </h2>
+
+          <p>
+            To demonstrate the practical use of the selected model, the
+            trained MobileNetV3-Small model was integrated into a web-based
+            prototype.
+          </p>
+
+          <p>
+            The prototype allows a user to upload a histopathological image and
+            obtain a model prediction through a simple interface. The website
+            also provides supporting information related to gastric cancer
+            awareness and healthy practices.
+          </p>
+
+          <p>
+            The web application is intended as a research prototype for
+            demonstrating model deployment and interaction, rather than as a
+            clinical diagnostic system.
+          </p>
+
+        </section>
+
+
+        <!-- SCREENSHOTS -->
+        <section class="section">
+
+          <h2>
+            Web Application Demonstration
+          </h2>
+
+          <p>
+            The following interfaces demonstrate the main components of the
+            GastroLite AI prototype.
+          </p>
+
+
+          <div class="gallery">
+
+            <figure>
+
+              <img
+                src="assets/homepage.png"
+                alt="GastroLite AI homepage"
+              >
+
+              <figcaption>
+                Homepage
+              </figcaption>
+
+            </figure>
+
+
+            <figure>
+
+              <img
+                src="assets/about.png"
+                alt="GastroLite AI about page"
+              >
+
+              <figcaption>
+                About the framework
+              </figcaption>
+
+            </figure>
+
+
+            <figure>
+
+              <img
+                src="assets/analysis-upload.png"
+                alt="Image upload interface"
+              >
+
+              <figcaption>
+                Image upload and analysis
+              </figcaption>
+
+            </figure>
+
+
+            <figure>
+
+              <img
+                src="assets/abnormal-result.png"
+                alt="Abnormal classification result"
+              >
+
+              <figcaption>
+                Abnormal classification result
+              </figcaption>
+
+            </figure>
+
+
+            <figure>
+
+              <img
+                src="assets/normal-result.png"
+                alt="Normal classification result"
+              >
+
+              <figcaption>
+                Normal classification result
+              </figcaption>
+
+            </figure>
+
+
+            <figure>
+
+              <img
+                src="assets/awareness.png"
+                alt="Gastric cancer awareness page"
+              >
+
+              <figcaption>
+                Awareness information
+              </figcaption>
+
+            </figure>
+
+
+            <figure>
+
+              <img
+                src="assets/healthy-tips.png"
+                alt="Healthy tips page"
+              >
+
+              <figcaption>
+                Healthy tips
+              </figcaption>
+
+            </figure>
+
+          </div>
+
+        </section>
+
+
+        <!-- RESULTS -->
+        <section class="section">
+
+          <h2>
+            What the Results Mean
+          </h2>
+
+          <p>
+            The experimental results demonstrate that lightweight
+            architectures can achieve strong classification performance on
+            gastric histopathological images.
+          </p>
+
+          <p>
+            EfficientNet-B0 obtained the highest test accuracy among the four
+            evaluated models. However, it also required the highest number of
+            parameters and FLOPs and had the largest model size.
+          </p>
+
+          <p>
+            MobileNetV3-Small achieved 98.42% test accuracy while requiring
+            substantially fewer computational resources. Its 61.46M FLOPs,
+            5.93 MB model size, and 0.4886 ms inference time per image make it
+            particularly suitable for the deployment-oriented objective of
+            this work.
+          </p>
+
+        </section>
+
+
+        <!-- LIMITATIONS -->
+        <section class="section">
+
+          <h2>
+            Limitations &amp; Future Work
+          </h2>
+
+          <p>
+            The current work represents a research prototype and has several
+            opportunities for further development.
+          </p>
+
+          <ul>
+            <li>
+              Evaluation on additional and more diverse datasets can improve
+              generalizability.
+            </li>
+
+            <li>
+              More extensive training and hyperparameter optimization can be
+              investigated.
+            </li>
+
+            <li>
+              Additional model compression techniques such as pruning or
+              quantization can be explored.
+            </li>
+
+            <li>
+              Future versions can investigate more advanced deployment
+              environments and hardware.
+            </li>
+
+            <li>
+              Further clinical validation would be required before any
+              real-world medical application.
+            </li>
+          </ul>
+
+        </section>
+
+
+        <!-- CONCLUSION -->
+        <section class="section">
+
+          <h2>
+            Conclusion
+          </h2>
+
+          <p>
+            GastroLite AI presents a deployment-oriented approach to gastric
+            cancer histopathological image classification by considering both
+            predictive performance and computational efficiency.
+          </p>
+
+          <p>
+            Four lightweight deep learning architectures were experimentally
+            compared, and MobileNetV3-Small was selected as the deployment
+            model because of its favorable balance between accuracy and
+            resource requirements.
+          </p>
+
+          <p>
+            The work demonstrates how resource-aware model evaluation can help
+            bridge the gap between deep learning experimentation and practical
+            lightweight deployment.
+          </p>
+
+        </section>
+
+
+        <!-- Tags -->
+        <div class="tags">
+
+          <span class="tag">
+            Gastric Cancer
+          </span>
+
+          <span class="tag">
+            Histopathology
+          </span>
+
+          <span class="tag">
+            Deep Learning
+          </span>
+
+          <span class="tag">
+            Lightweight CNN
+          </span>
+
+          <span class="tag">
+            MobileNetV3
+          </span>
+
+          <span class="tag">
+            Resource-Aware AI
+          </span>
+
+        </div>
+
+
+      </div>
+
+    </article>
+
+  </main>
+
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>@2026 All Rights Reserved</p>
+  </footer>
+
+
+  <!-- JavaScript -->
+  <script>
+
+    /* Reading progress bar */
+
+    window.addEventListener("scroll", function () {
+
+      const scrollTop =
+        document.documentElement.scrollTop || document.body.scrollTop;
+
+      const scrollHeight =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+
+      const progress =
+        (scrollTop / scrollHeight) * 100;
+
+      document.getElementById("progressBar").style.width =
+        progress + "%";
+
+    });
+
+  </script>
+
 </body>
 </html>
