@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -20,432 +21,1290 @@
 
     body {
       font-family: Georgia, "Times New Roman", serif;
-      color: #243447;
+      color: #243b43;
       line-height: 1.8;
-
-      background:
-        linear-gradient(
-          rgba(248, 251, 252, 0.84),
-          rgba(248, 251, 252, 0.92)
-        ),
-        url("GastroLite Blog Background.png") center top / cover fixed;
+      background: #e9f5f5;
     }
 
-    /* Reading progress */
+
+    /* =========================================
+       READING PROGRESS
+    ========================================= */
 
     .progress-bar {
       position: fixed;
       top: 0;
       left: 0;
       width: 0%;
-      height: 4px;
-      background: #4f7f8f;
+      height: 5px;
+      background: linear-gradient(
+        90deg,
+        #55d6c2,
+        #62b8e8,
+        #9be7dc
+      );
       z-index: 9999;
     }
 
-    /* Header */
+
+    /* =========================================
+       TOP BRAND HEADER
+    ========================================= */
 
     .masthead {
-      padding: 42px 20px 28px;
-      border-bottom: 1px solid rgba(70, 90, 105, 0.16);
-      background: rgba(255, 255, 255, 0.72);
-      backdrop-filter: blur(8px);
+
+      position: relative;
+      overflow: hidden;
+
+      padding: 55px 20px 48px;
+
+      color: white;
+
+      background:
+        radial-gradient(
+          circle at 15% 20%,
+          rgba(91, 220, 201, 0.28),
+          transparent 28%
+        ),
+
+        radial-gradient(
+          circle at 85% 80%,
+          rgba(80, 164, 226, 0.30),
+          transparent 30%
+        ),
+
+        linear-gradient(
+          135deg,
+          #0b4f5a,
+          #126878 48%,
+          #164f72
+        );
+
+      box-shadow:
+        0 8px 30px rgba(16, 78, 91, 0.25);
     }
+
+
+    /* Decorative circles */
+
+    .masthead::before {
+      content: "";
+      position: absolute;
+
+      width: 220px;
+      height: 220px;
+
+      border-radius: 50%;
+
+      border: 1px solid rgba(255,255,255,0.12);
+
+      top: -100px;
+      left: -70px;
+    }
+
+
+    .masthead::after {
+      content: "";
+      position: absolute;
+
+      width: 280px;
+      height: 280px;
+
+      border-radius: 50%;
+
+      border: 1px solid rgba(255,255,255,0.10);
+
+      right: -110px;
+      bottom: -150px;
+    }
+
 
     .mast-inner {
-      max-width: 1050px;
+      position: relative;
+      z-index: 2;
+
+      max-width: 1100px;
       margin: auto;
+
+      text-align: center;
     }
 
-    .brand-row {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
 
-    .brand-row img {
-      width: 72px;
-      height: 72px;
+    /* Centered logo */
+
+    .brand-logo {
+
+      width: 105px;
+      height: 105px;
+
       object-fit: contain;
+
+      display: block;
+      margin: 0 auto 18px;
+
+      border-radius: 50%;
+
+      background: rgba(255,255,255,0.95);
+
+      padding: 5px;
+
+      box-shadow:
+        0 8px 25px rgba(0,0,0,0.20);
+
+      transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
     }
+
+
+    .brand-logo:hover {
+
+      transform: scale(1.06) rotate(2deg);
+
+      box-shadow:
+        0 12px 35px rgba(0,0,0,0.28);
+    }
+
 
     .brand {
+
       font-family: Arial, Helvetica, sans-serif;
-      font-size: 30px;
-      color: #294c5a;
-      letter-spacing: 0.5px;
-      margin-bottom: 2px;
+
+      font-size: clamp(34px, 5vw, 50px);
+
+      font-weight: 700;
+
+      letter-spacing: 1px;
+
+      color: white;
+
+      margin-bottom: 5px;
+
+      text-shadow:
+        0 3px 15px rgba(0,0,0,0.18);
     }
+
 
     .kicker {
+
       font-family: Arial, Helvetica, sans-serif;
-      font-size: 13px;
-      color: #607d8b;
-      letter-spacing: 0.8px;
+
+      font-size: 15px;
+
+      letter-spacing: 1.5px;
+
+      color: #c8f4ee;
+
+      margin-top: 4px;
     }
 
-    .meta {
-      margin-top: 18px;
+
+    .author {
+
+      margin-top: 20px;
+
       font-family: Arial, Helvetica, sans-serif;
-      font-size: 13px;
-      color: #71808a;
+
+      font-size: 14px;
+
+      color: rgba(255,255,255,0.82);
     }
 
-    /* Article */
 
-    .article {
-      width: 100%;
-      padding: 50px 20px;
+    /* =========================================
+       CONTENT AREA
+       BACKGROUND IMAGE STARTS HERE
+    ========================================= */
+
+    .content-area {
+
+      position: relative;
+
+      padding: 55px 20px 70px;
+
+      background:
+
+        linear-gradient(
+          rgba(235, 248, 248, 0.80),
+          rgba(238, 248, 250, 0.88)
+        ),
+
+        url("GastroLite Blog Background.png")
+        center top / cover fixed;
+
+      overflow: hidden;
     }
+
+
+    /* Decorative floating circles */
+
+    .content-area::before {
+
+      content: "";
+
+      position: absolute;
+
+      width: 350px;
+      height: 350px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(51, 178, 177, 0.13),
+          transparent 70%
+        );
+
+      top: 100px;
+      left: -170px;
+    }
+
+
+    .content-area::after {
+
+      content: "";
+
+      position: absolute;
+
+      width: 400px;
+      height: 400px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(80, 170, 220, 0.12),
+          transparent 70%
+        );
+
+      right: -190px;
+      bottom: 400px;
+    }
+
+
+    /* =========================================
+       ARTICLE
+    ========================================= */
 
     .paper {
-      max-width: 1050px;
+
+      position: relative;
+      z-index: 2;
+
+      max-width: 1080px;
+
       margin: auto;
-      background: rgba(255, 255, 255, 0.91);
-      border: 1px solid rgba(70, 90, 105, 0.12);
-      box-shadow: 0 12px 45px rgba(60, 80, 95, 0.08);
+
+      background: rgba(255,255,255,0.94);
+
+      border-radius: 24px;
+
+      border: 1px solid rgba(65,140,150,0.18);
+
+      box-shadow:
+        0 20px 70px rgba(24,86,96,0.16);
+
+      overflow: hidden;
     }
+
 
     .article-inner {
-      max-width: 900px;
+
+      max-width: 920px;
+
       margin: auto;
-      padding: 55px 65px 65px;
+
+      padding: 65px 65px 75px;
     }
 
-    /* Hero */
+
+    /* =========================================
+       HERO / MAIN TITLE
+    ========================================= */
 
     .hero {
-      padding-bottom: 42px;
-      margin-bottom: 45px;
-      border-bottom: 1px solid rgba(70, 90, 105, 0.16);
-      animation: fadeUp 0.9s ease both;
+
+      position: relative;
+
+      padding: 20px 0 48px;
+
+      margin-bottom: 55px;
+
+      text-align: center;
+
+      border-bottom:
+        1px solid rgba(55,120,130,0.16);
     }
+
 
     .eyebrow {
+
       display: inline-block;
+
+      padding: 7px 18px;
+
+      border-radius: 30px;
+
       font-family: Arial, Helvetica, sans-serif;
-      font-size: 12px;
+
+      font-size: 11px;
+
       text-transform: uppercase;
-      letter-spacing: 1.8px;
-      color: #638795;
-      margin-bottom: 18px;
+
+      letter-spacing: 2px;
+
+      color: #16747b;
+
+      background:
+        linear-gradient(
+          135deg,
+          #d9f7f2,
+          #e1f2fa
+        );
+
+      border: 1px solid #b9e4e1;
+
+      margin-bottom: 22px;
     }
+
 
     .hero h1 {
+
       font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(32px, 4.5vw, 52px);
-      line-height: 1.18;
-      font-weight: 600;
-      color: #213f4a;
+
+      font-size: clamp(34px, 5vw, 56px);
+
+      line-height: 1.17;
+
+      font-weight: 700;
+
+      color: #173f4b;
+
+      max-width: 850px;
+
+      margin: auto;
     }
 
-    /* Sections */
+
+    /* Accent line under title */
+
+    .hero::after {
+
+      content: "";
+
+      display: block;
+
+      width: 85px;
+
+      height: 5px;
+
+      border-radius: 10px;
+
+      margin: 30px auto 0;
+
+      background:
+        linear-gradient(
+          90deg,
+          #37bca9,
+          #55a9d9
+        );
+    }
+
+
+    /* =========================================
+       SECTIONS
+    ========================================= */
 
     .section {
-      margin-bottom: 55px;
-      animation: fadeUp 0.8s ease both;
+
+      position: relative;
+
+      margin-bottom: 60px;
+
+      padding: 30px 30px 32px;
+
+      border-radius: 18px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(246,252,252,0.95),
+          rgba(255,255,255,0.88)
+        );
+
+      border: 1px solid rgba(80,145,155,0.10);
+
+      box-shadow:
+        0 7px 25px rgba(40,90,100,0.05);
+
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
     }
+
+
+    .section:hover {
+
+      transform: translateY(-3px);
+
+      box-shadow:
+        0 12px 32px rgba(40,100,110,0.10);
+    }
+
 
     .section h2 {
+
+      position: relative;
+
       font-family: Arial, Helvetica, sans-serif;
-      font-size: 25px;
+
+      font-size: 26px;
+
       line-height: 1.3;
-      color: #315b69;
-      margin-bottom: 18px;
-      font-weight: 600;
+
+      color: #176875;
+
+      margin-bottom: 20px;
+
+      padding-left: 18px;
     }
+
+
+    .section h2::before {
+
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+
+      top: 3px;
+
+      width: 5px;
+
+      height: 28px;
+
+      border-radius: 5px;
+
+      background:
+        linear-gradient(
+          #36bba9,
+          #4f9fd1
+        );
+    }
+
 
     .section p {
+
       font-size: 17px;
+
       margin-bottom: 17px;
-      color: #384b55;
+
+      color: #40565e;
     }
+
 
     .section ul {
-      margin: 15px 0 20px 25px;
+
+      margin: 18px 0 22px 25px;
     }
+
 
     .section li {
-      margin-bottom: 8px;
+
+      margin-bottom: 9px;
+
       font-size: 16px;
-      color: #40535c;
+
+      color: #425960;
     }
 
-    /* Highlight */
+
+    /* =========================================
+       HIGHLIGHT
+    ========================================= */
 
     .highlight {
+
       margin: 30px 0;
-      padding: 22px 28px;
-      border-left: 4px solid #739aaa;
-      background: rgba(232, 242, 245, 0.7);
+
+      padding: 25px 28px;
+
+      border-radius: 14px;
+
+      border-left: 5px solid #35b8a5;
+
+      background:
+        linear-gradient(
+          135deg,
+          #e0f8f4,
+          #e5f3fa
+        );
+
+      color: #275a64;
+
       font-size: 18px;
-      color: #36525e;
+
       font-style: italic;
+
+      box-shadow:
+        0 5px 20px rgba(42,130,135,0.08);
     }
 
-    /* Figures */
+
+    /* =========================================
+       FIGURES
+    ========================================= */
 
     figure {
+
       margin: 35px auto;
+
       text-align: center;
     }
 
+
     figure img {
+
       max-width: 100%;
+
       height: auto;
+
       display: block;
+
       margin: auto;
-      border-radius: 8px;
-      box-shadow: 0 8px 28px rgba(50, 70, 80, 0.12);
-      transition: transform 0.35s ease,
-                  box-shadow 0.35s ease;
+
+      border-radius: 14px;
+
+      border: 1px solid rgba(70,140,150,0.18);
+
+      box-shadow:
+        0 10px 30px rgba(30,80,90,0.14);
+
+      transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
     }
+
 
     figure img:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 14px 32px rgba(50, 70, 80, 0.17);
+
+      transform: translateY(-6px) scale(1.01);
+
+      box-shadow:
+        0 18px 38px rgba(30,90,100,0.20);
     }
+
 
     figcaption {
-      margin-top: 11px;
+
+      margin-top: 12px;
+
       font-family: Arial, Helvetica, sans-serif;
+
       font-size: 12px;
-      color: #74838b;
+
+      color: #71878e;
     }
 
-    /* Table */
+
+    /* =========================================
+       TABLE
+    ========================================= */
 
     .table-wrapper {
+
       overflow-x: auto;
+
       margin: 30px 0;
     }
 
+
     table {
+
       width: 100%;
-      border-collapse: collapse;
+
+      border-collapse: separate;
+
+      border-spacing: 0;
+
+      overflow: hidden;
+
+      border-radius: 12px;
+
       font-family: Arial, Helvetica, sans-serif;
+
       font-size: 13px;
-      background: rgba(255, 255, 255, 0.75);
+
+      background: white;
+
+      box-shadow:
+        0 7px 25px rgba(30,90,100,0.08);
     }
 
+
     th {
-      background: #e7f0f3;
-      color: #345765;
+
+      padding: 14px 10px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #176875,
+          #24859a
+        );
+
+      color: white;
+
       font-weight: 600;
     }
 
-    th,
+
     td {
-      padding: 12px 10px;
-      border: 1px solid #d7e1e5;
+
+      padding: 13px 10px;
+
+      border-bottom: 1px solid #dce9eb;
+
       text-align: center;
+
       white-space: nowrap;
+
+      color: #40555d;
     }
+
+
+    tr:last-child td {
+
+      border-bottom: none;
+    }
+
 
     tr:hover td {
-      background: #f5f9fa;
+
+      background: #eef9f8;
     }
 
-    /* Selected model */
+
+    /* =========================================
+       SELECTED MODEL
+    ========================================= */
 
     .selected-model {
+
       margin: 30px 0;
-      padding: 25px 28px;
-      border: 1px solid #cbdde3;
-      background: rgba(239, 247, 249, 0.78);
+
+      padding: 28px;
+
+      border-radius: 16px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #dff8f3,
+          #e5f3fb
+        );
+
+      border: 1px solid #b7e2df;
+
+      box-shadow:
+        0 8px 25px rgba(40,130,135,0.10);
     }
+
 
     .selected-model strong {
-      color: #315d6b;
+
+      display: block;
+
       font-family: Arial, Helvetica, sans-serif;
+
+      font-size: 18px;
+
+      color: #176875;
+
+      margin-bottom: 8px;
     }
 
-    /* Screenshot gallery */
+
+    /* =========================================
+       SCREENSHOT GALLERY
+    ========================================= */
 
     .gallery {
+
       display: grid;
+
       grid-template-columns: repeat(2, 1fr);
-      gap: 22px;
+
+      gap: 25px;
+
       margin-top: 30px;
     }
 
+
     .gallery figure {
+
+      padding: 10px;
+
       margin: 0;
+
+      border-radius: 16px;
+
+      background: white;
+
+      border: 1px solid rgba(70,140,150,0.13);
+
+      box-shadow:
+        0 7px 25px rgba(40,90,100,0.08);
+
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
     }
+
+
+    .gallery figure:hover {
+
+      transform: translateY(-6px);
+
+      box-shadow:
+        0 14px 32px rgba(30,90,100,0.15);
+    }
+
 
     .gallery img {
+
       width: 100%;
-      height: 250px;
+
+      height: 260px;
+
       object-fit: cover;
+
+      border-radius: 10px;
+
+      box-shadow: none;
     }
 
-    /* Tags */
+
+    .gallery img:hover {
+
+      transform: none;
+
+      box-shadow: none;
+    }
+
+
+    /* =========================================
+       KEYWORDS
+    ========================================= */
 
     .tags {
-      margin-top: 45px;
-      padding-top: 25px;
-      border-top: 1px solid rgba(70, 90, 105, 0.15);
+
+      margin-top: 55px;
+
+      padding-top: 30px;
+
+      border-top:
+        1px solid rgba(70,120,130,0.15);
+
+      text-align: center;
+
       font-family: Arial, Helvetica, sans-serif;
     }
+
 
     .tag {
+
       display: inline-block;
-      margin: 5px 5px 5px 0;
-      padding: 6px 12px;
-      border: 1px solid #c9dce2;
-      border-radius: 20px;
+
+      margin: 6px 4px;
+
+      padding: 8px 17px;
+
+      border-radius: 30px;
+
       font-size: 12px;
-      color: #577582;
-      background: rgba(245, 250, 251, 0.8);
+
+      font-weight: 500;
+
+      color: #176875;
+
+      background:
+        linear-gradient(
+          135deg,
+          #d9f5f0,
+          #e3f2fa
+        );
+
+      border: 1px solid #b9dfdf;
+
+      box-shadow:
+        0 3px 10px rgba(30,100,110,0.06);
+
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
     }
 
-    /* Footer */
+
+    .tag:hover {
+
+      transform: translateY(-3px);
+
+      box-shadow:
+        0 7px 15px rgba(30,110,120,0.13);
+    }
+
+
+    /* =========================================
+       LARGE HEALTH QUOTE
+    ========================================= */
+
+    .health-quote {
+
+      position: relative;
+
+      margin: 65px -10px 65px;
+
+      padding: 55px 30px;
+
+      text-align: center;
+
+      border-radius: 22px;
+
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at 15% 20%,
+          rgba(108,231,212,0.25),
+          transparent 30%
+        ),
+
+        radial-gradient(
+          circle at 85% 80%,
+          rgba(91,177,232,0.25),
+          transparent 30%
+        ),
+
+        linear-gradient(
+          135deg,
+          #0e6370,
+          #147e86,
+          #185d7d
+        );
+
+      box-shadow:
+        0 15px 40px rgba(15,90,100,0.20);
+    }
+
+
+    .health-quote::before {
+
+      content: "“";
+
+      position: absolute;
+
+      top: -25px;
+      left: 30px;
+
+      font-family: Georgia, serif;
+
+      font-size: 150px;
+
+      color: rgba(255,255,255,0.10);
+    }
+
+
+    .health-quote p {
+
+      position: relative;
+
+      z-index: 2;
+
+      max-width: 780px;
+
+      margin: auto;
+
+      font-family: Georgia, serif;
+
+      font-size: clamp(25px, 4vw, 43px);
+
+      line-height: 1.35;
+
+      font-weight: 600;
+
+      color: white;
+
+      text-shadow:
+        0 3px 15px rgba(0,0,0,0.15);
+    }
+
+
+    /* =========================================
+       QUERY / CONTACT
+    ========================================= */
+
+    .contact-section {
+
+      position: relative;
+
+      margin-top: 20px;
+
+      padding: 45px 30px;
+
+      text-align: center;
+
+      border-radius: 20px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #e2f8f4,
+          #e6f3fa
+        );
+
+      border:
+        1px solid #b9dfdf;
+
+      box-shadow:
+        0 10px 30px rgba(30,100,110,0.09);
+    }
+
+
+    .contact-section h2 {
+
+      font-family: Arial, Helvetica, sans-serif;
+
+      font-size: 28px;
+
+      color: #176875;
+
+      margin-bottom: 8px;
+    }
+
+
+    .contact-intro {
+
+      max-width: 620px;
+
+      margin: 0 auto 28px;
+
+      color: #526970;
+
+      font-size: 16px;
+    }
+
+
+    .contact-details {
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      gap: 20px;
+
+      flex-wrap: wrap;
+    }
+
+
+    .contact-item {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+      padding: 12px 20px;
+
+      border-radius: 30px;
+
+      background: white;
+
+      color: #356875;
+
+      text-decoration: none;
+
+      font-family: Arial, Helvetica, sans-serif;
+
+      font-size: 14px;
+
+      border: 1px solid #c7e1e2;
+
+      box-shadow:
+        0 4px 15px rgba(30,100,110,0.07);
+
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        color 0.25s ease;
+    }
+
+
+    .contact-item:hover {
+
+      transform: translateY(-4px);
+
+      color: #12606c;
+
+      box-shadow:
+        0 9px 22px rgba(30,100,110,0.14);
+    }
+
+
+    .contact-icon {
+
+      display: flex;
+
+      color: #21988f;
+    }
+
+
+    /* =========================================
+       FOOTER
+    ========================================= */
 
     .site-footer {
+
+      padding: 25px 20px;
+
       text-align: center;
-      padding: 22px 20px;
-      border-top: 1px solid rgba(60, 80, 100, 0.15);
-      color: #64748b;
+
+      background:
+        linear-gradient(
+          135deg,
+          #0c505b,
+          #125f70
+        );
+
+      color: rgba(255,255,255,0.78);
+
       font-family: Arial, Helvetica, sans-serif;
+
       font-size: 13px;
-      letter-spacing: 0.3px;
-      background: rgba(255, 255, 255, 0.72);
+
+      letter-spacing: 0.5px;
     }
 
+
     .site-footer p {
+
       margin: 0;
     }
 
-    /* Animation */
+
+    /* =========================================
+       ANIMATION
+    ========================================= */
 
     @keyframes fadeUp {
 
       from {
+
         opacity: 0;
-        transform: translateY(18px);
+
+        transform:
+          translateY(25px);
       }
 
       to {
+
         opacity: 1;
-        transform: translateY(0);
+
+        transform:
+          translateY(0);
       }
 
     }
 
-    /* Mobile */
+
+    .hero {
+
+      animation:
+        fadeUp 0.8s ease both;
+    }
+
+
+    .section {
+
+      animation:
+        fadeUp 0.8s ease both;
+    }
+
+
+    /* =========================================
+       MOBILE
+    ========================================= */
 
     @media (max-width: 768px) {
 
       .masthead {
-        padding: 30px 18px 22px;
+
+        padding:
+          40px 18px 38px;
       }
 
-      .brand-row img {
-        width: 58px;
-        height: 58px;
+
+      .brand-logo {
+
+        width: 85px;
+        height: 85px;
       }
 
-      .brand {
-        font-size: 25px;
-      }
-
-      .article {
-        padding: 25px 12px;
-      }
 
       .article-inner {
-        padding: 38px 25px 45px;
+
+        padding:
+          40px 22px 50px;
       }
 
+
+      .content-area {
+
+        padding:
+          30px 12px 50px;
+      }
+
+
+      .paper {
+
+        border-radius: 18px;
+      }
+
+
       .hero h1 {
+
         font-size: 34px;
       }
 
-      .section h2 {
-        font-size: 22px;
+
+      .section {
+
+        padding: 25px 20px;
       }
 
+
       .section p {
+
         font-size: 16px;
       }
 
+
       .gallery {
+
         grid-template-columns: 1fr;
       }
 
+
       .gallery img {
+
         height: auto;
+      }
+
+
+      .health-quote {
+
+        margin-left: 0;
+        margin-right: 0;
       }
 
     }
 
+
     @media (max-width: 480px) {
 
-      .brand-row {
-        align-items: flex-start;
-      }
-
-      .brand-row img {
-        width: 50px;
-        height: 50px;
-      }
-
       .brand {
+
+        font-size: 34px;
+      }
+
+
+      .kicker {
+
+        font-size: 12px;
+      }
+
+
+      .author {
+
+        font-size: 12px;
+      }
+
+
+      .hero h1 {
+
+        font-size: 29px;
+      }
+
+
+      .section h2 {
+
         font-size: 22px;
       }
 
-      .kicker {
-        font-size: 11px;
+
+      .health-quote p {
+
+        font-size: 27px;
       }
 
-      .article-inner {
-        padding: 30px 18px 40px;
-      }
 
-      .hero h1 {
-        font-size: 29px;
+      .contact-item {
+
+        width: 100%;
+
+        justify-content: center;
       }
 
     }
 
   </style>
+
 </head>
 
 
 <body>
 
-  <!-- Reading Progress -->
-  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- =====================================
+       READING PROGRESS
+  ====================================== -->
+
+  <div
+    class="progress-bar"
+    id="progressBar">
+  </div>
 
 
-  <!-- Header -->
+  <!-- =====================================
+       GASTROLITE HEADER
+  ====================================== -->
+
   <header class="masthead">
 
     <div class="mast-inner">
 
-      <div class="brand-row">
+      <img
+        class="brand-logo"
+        src="logo.png"
+        alt="GastroLite AI Logo"
+      >
 
-        <img
-          src="logo.png"
-          alt="GastroLite AI logo"
-        >
+      <h1 class="brand">
+        GastroLite AI
+      </h1>
 
-        <div>
-
-          <h1 class="brand">
-            GastroLite AI
-          </h1>
-
-          <div class="kicker">
-            Efficient Detection ✦ Lightweight Deployment
-          </div>
-
-        </div>
-
+      <div class="kicker">
+        Efficient Detection ✦ Lightweight Deployment
       </div>
 
-      <div class="meta">
-        - Written by Mahvish Ishaq
+      <div class="author">
+        — Written by Mahvish Ishaq
       </div>
 
     </div>
@@ -453,16 +1312,23 @@
   </header>
 
 
-  <!-- Article -->
+  <!-- =====================================
+       CONTENT AREA
+       BACKGROUND STARTS HERE
+  ====================================== -->
 
-  <main class="article">
-
-    <article class="paper">
-
-      <div class="article-inner">
+  <div class="content-area">
 
 
-        <!-- Title -->
+    <main class="paper">
+
+
+      <article class="article-inner">
+
+
+        <!-- =================================
+             MAIN TITLE
+        ================================== -->
 
         <section class="hero">
 
@@ -471,14 +1337,18 @@
           </span>
 
           <h1>
-            A Deployment-Oriented Resource-Aware Lightweight Deep Learning Framework
-            for Gastric Cancer Histopathological Classification
+            A Deployment-Oriented Resource-Aware
+            Lightweight Deep Learning Framework
+            for Gastric Cancer Histopathological
+            Classification
           </h1>
 
         </section>
 
 
-        <!-- Introduction -->
+        <!-- =================================
+             INTRODUCTION
+        ================================== -->
 
         <section class="section">
 
@@ -512,7 +1382,9 @@
         </section>
 
 
-        <!-- Why Lightweight -->
+        <!-- =================================
+             WHY LIGHTWEIGHT
+        ================================== -->
 
         <section class="section">
 
@@ -528,16 +1400,18 @@
 
           <div class="highlight">
 
-            The objective of GastroLite AI is therefore to identify a model that
-            provides a strong balance between accuracy and resource efficiency,
-            rather than selecting a model based only on the highest accuracy.
+            The objective of GastroLite AI is to identify a model that provides
+            a strong balance between accuracy and resource efficiency, rather
+            than selecting a model based only on the highest accuracy.
 
           </div>
 
         </section>
 
 
-        <!-- Dataset -->
+        <!-- =================================
+             DATASET
+        ================================== -->
 
         <section class="section">
 
@@ -593,7 +1467,9 @@
         </section>
 
 
-        <!-- Methodology -->
+        <!-- =================================
+             METHODOLOGY
+        ================================== -->
 
         <section class="section">
 
@@ -617,7 +1493,7 @@
 
             <img
               src="working-diagram.png"
-              alt="GastroLite AI working methodology"
+              alt="GastroLite AI Working Diagram"
             >
 
             <figcaption>
@@ -629,7 +1505,9 @@
         </section>
 
 
-        <!-- Model Evaluation -->
+        <!-- =================================
+             MODEL EVALUATION
+        ================================== -->
 
         <section class="section">
 
@@ -717,7 +1595,9 @@
         </section>
 
 
-        <!-- Resource Aware Selection -->
+        <!-- =================================
+             RESOURCE AWARE
+        ================================== -->
 
         <section class="section">
 
@@ -741,15 +1621,13 @@
           <div class="selected-model">
 
             <strong>
-              Selected model: MobileNetV3-Small
+              Selected Model: MobileNetV3-Small
             </strong>
 
-            <p style="margin-top: 10px;">
-
+            <p>
               MobileNetV3-Small was selected for deployment because it combines
               high classification accuracy with a significantly lower
               computational requirement and smaller model size.
-
             </p>
 
           </div>
@@ -757,7 +1635,9 @@
         </section>
 
 
-        <!-- Web Prototype -->
+        <!-- =================================
+             WEB PROTOTYPE
+        ================================== -->
 
         <section class="section">
 
@@ -787,7 +1667,9 @@
         </section>
 
 
-        <!-- Web Application Screenshots -->
+        <!-- =================================
+             WEB APPLICATION
+        ================================== -->
 
         <section class="section">
 
@@ -808,7 +1690,7 @@
 
               <img
                 src="homepage.png"
-                alt="GastroLite AI homepage"
+                alt="GastroLite AI Homepage"
               >
 
               <figcaption>
@@ -822,7 +1704,7 @@
 
               <img
                 src="about.png"
-                alt="GastroLite AI about page"
+                alt="GastroLite AI About Page"
               >
 
               <figcaption>
@@ -836,7 +1718,7 @@
 
               <img
                 src="analysis-upload.png"
-                alt="Image upload interface"
+                alt="Image Upload Interface"
               >
 
               <figcaption>
@@ -850,7 +1732,7 @@
 
               <img
                 src="abnormal-result.png"
-                alt="Abnormal classification result"
+                alt="Abnormal Classification Result"
               >
 
               <figcaption>
@@ -860,13 +1742,11 @@
             </figure>
 
 
-            <!-- NORMAL RESULT -->
-
             <figure>
 
               <img
                 src="normal-result.png"
-                alt="Normal classification result"
+                alt="Normal Classification Result"
               >
 
               <figcaption>
@@ -880,7 +1760,7 @@
 
               <img
                 src="awareness.png"
-                alt="Gastric cancer awareness page"
+                alt="Gastric Cancer Awareness"
               >
 
               <figcaption>
@@ -894,7 +1774,7 @@
 
               <img
                 src="healthy-tips.png"
-                alt="Healthy tips page"
+                alt="Healthy Tips"
               >
 
               <figcaption>
@@ -909,7 +1789,9 @@
         </section>
 
 
-        <!-- Results -->
+        <!-- =================================
+             RESULTS
+        ================================== -->
 
         <section class="section">
 
@@ -940,7 +1822,9 @@
         </section>
 
 
-        <!-- Limitations -->
+        <!-- =================================
+             LIMITATIONS
+        ================================== -->
 
         <section class="section">
 
@@ -985,7 +1869,9 @@
         </section>
 
 
-        <!-- Conclusion -->
+        <!-- =================================
+             CONCLUSION
+        ================================== -->
 
         <section class="section">
 
@@ -1015,7 +1901,9 @@
         </section>
 
 
-        <!-- Tags -->
+        <!-- =================================
+             KEYWORDS
+        ================================== -->
 
         <div class="tags">
 
@@ -1046,14 +1934,142 @@
         </div>
 
 
-      </div>
+        <!-- =================================
+             HEALTH QUOTE
+        ================================== -->
 
-    </article>
+        <section class="health-quote">
 
-  </main>
+          <p>
+            “Awareness today can lead to better health tomorrow.”
+          </p>
+
+        </section>
 
 
-  <!-- Footer -->
+        <!-- =================================
+             QUERIES
+        ================================== -->
+
+        <section class="contact-section">
+
+          <h2>
+            For Any Queries
+          </h2>
+
+          <p class="contact-intro">
+            Have a question or would like to know more about this research?
+            Feel free to get in touch.
+          </p>
+
+
+          <div class="contact-details">
+
+
+            <!-- EMAIL -->
+
+            <a
+              href="mailto:2103a51473@sru.edu.in"
+              class="contact-item"
+            >
+
+              <span class="contact-icon">
+
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+
+                  <rect
+                    x="3"
+                    y="5"
+                    width="18"
+                    height="14"
+                    rx="2"
+                  ></rect>
+
+                  <polyline
+                    points="3,7 12,13 21,7"
+                  ></polyline>
+
+                </svg>
+
+              </span>
+
+              <span>
+                2103a51473@sru.edu.in
+              </span>
+
+            </a>
+
+
+            <!-- PHONE -->
+
+            <a
+              href="tel:+918143633278"
+              class="contact-item"
+            >
+
+              <span class="contact-icon">
+
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2
+                    19.79 19.79 0 0 1-8.63-3.07
+                    19.5 19.5 0 0 1-6-6
+                    19.79 19.79 0 0 1-3.07-8.67
+                    A2 2 0 0 1 4.11 2h3
+                    a2 2 0 0 1 2 1.72
+                    12.84 12.84 0 0 0 .7 2.81
+                    2 2 0 0 1-.45 2.11L8.09 9.91
+                    a16 16 0 0 0 6 6l1.27-1.27
+                    a2 2 0 0 1 2.11-.45
+                    12.84 12.84 0 0 0 2.81.7
+                    A2 2 0 0 1 22 16.92z"
+                  ></path>
+
+                </svg>
+
+              </span>
+
+              <span>
+                +91 81436 33278
+              </span>
+
+            </a>
+
+
+          </div>
+
+        </section>
+
+
+      </article>
+
+    </main>
+
+  </div>
+
+
+  <!-- =====================================
+       FOOTER
+  ====================================== -->
 
   <footer class="site-footer">
 
@@ -1064,7 +2080,9 @@
   </footer>
 
 
-  <!-- Reading Progress Script -->
+  <!-- =====================================
+       READING PROGRESS SCRIPT
+  ====================================== -->
 
   <script>
 
@@ -1087,6 +2105,7 @@
     });
 
   </script>
+
 
 </body>
 </html>
